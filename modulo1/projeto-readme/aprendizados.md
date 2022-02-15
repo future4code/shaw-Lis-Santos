@@ -1,0 +1,2 @@
+# Aprendizados da semana 
+Nessa semana de onboarding da **Labenu**, conheci o git e desejei pelo menos 10x não ter conhecido. Já havia tido um primeiro contato com o terminal e o VSCodem, porém não interligados como nos está sendo passado agora. E por último, mas não menos importante, estou aprendendo a lidar com a minha dificuldade de pedir ajuda.
