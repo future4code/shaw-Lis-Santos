@@ -19,7 +19,7 @@ function imprimeMensagem() {
 // EXERCÍCIO 01
 function calculaAreaRetangulo(altura, largura) {
 let altura = Number(prompt("Informe a altura de um retângulo"))
-let largura = Number(prompt("Informe a base de um retãngulo"))
+let largura = Number(prompt("Informe a largura de um retãngulo"))
 let area = altura * largura 
 console.log(area)
 }
