@@ -17,7 +17,7 @@ function imprimeMensagem() {
 // EXERCÍCIOS PARA FAZER ------------------------------------------------------------------
 
 // EXERCÍCIO 01
-function calculaAreaRetangulo(altura, largura) {
+function calculaAreaRetangulo() {
 let altura = Number(prompt("Informe a altura de um retângulo"))
 let largura = Number(prompt("Informe a largura de um retãngulo"))
 let area = altura * largura 
@@ -25,7 +25,7 @@ console.log(area)
 }
 
 // EXERCÍCIO 02
-function imprimeIdade(anoAtual, anoNascimento, idade) {
+function imprimeIdade() {
 let anoAtual = Number(prompt("Informe o ano atual"))
 let anoNascimento = Number(prompt("Informe seu ano de nascimento"))
 let idade = anoAtual - anoNascimento
@@ -33,7 +33,7 @@ console.log(idade)
 }
 
 // EXERCÍCIO 03
-function calculaIMC(peso, altura) {
+function calculaIMC() {
 let peso = Number(prompt("Informe seu peso"))
 let altura = Number(prompt("Informe sua altura"))
   return peso / (altura * altura)
@@ -58,32 +58,32 @@ console.log(coresFavoritas)
 }
 
 // EXERCÍCIO 06
-function retornaStringEmMaiuscula(string) {
+function retornaStringEmMaiuscula() {
 let string = prompt("Digite um texto")
   return string.toUpperCase()
 }
 
 // EXERCÍCIO 07
-function calculaIngressosEspetaculo(custo, valorIngresso) {
+function calculaIngressosEspetaculo() {
 custo = Number(prompt("Digite o valor do espetáculo"))
 valorIngresso = Number(prrompt("Digite o valor do ingresso"))
   return custo / valorIngresso
 }
 
 // EXERCÍCIO 08
-function checaStringsMesmoTamanho(string1, string2) {
+function checaStringsMesmoTamanho() {
 let string1 = toString(prompt("Digite um texto"))
 let string2 = toString(prompt("Digite novamente um texto"))
 let novaString1 = string1.length
 let novaString2 = string2.length
-if (novaString1 === novaString2) {
+  if (novaString1 === novaString2) {
   return true
 } else
-return false 
+  return false 
 }
 
 // EXERCÍCIO 09
-function retornaPrimeiroElemento(array) {
+function retornaPrimeiroElemento() {
 let array = []
 let elemento1 = prompt("1. Digite um elemento")
 let elemento2 = prompt("2. Digite um elemento")
@@ -94,7 +94,7 @@ array.push(elemento1, elemento2, elemento3, elemento4)
 }
 
 // EXERCÍCIO 10
-function retornaUltimoElemento(array) {
+function retornaUltimoElemento() {
 let array = []
 let elemento1 = prompt("1. Digite um elemento")
 let elemento2 = prompt("2. Digite um elemento")
@@ -105,7 +105,7 @@ array.push(elemento1, elemento2, elemento3, elemento4)
 }
 
 // EXERCÍCIO 11
-function trocaPrimeiroEUltimo(array) {
+function trocaPrimeiroEUltimo() {
 let array = []
 let elemento1 = prompt("1. Digite um elemento")
 let elemento2 = prompt("2. Digite um elemento")
@@ -116,7 +116,7 @@ array.push(elemento1, elemento2, elemento3, elemento4)
 }
 
 // EXERCÍCIO 12
-function checaIgualdadeDesconsiderandoCase(string1, string2) {
+function checaIgualdadeDesconsiderandoCase() {
 let string1 = prompt("Digite um texto")
 let string2 = prompt("Digite um texto")
 let novaString1 = string1.toUpperCase()
@@ -155,7 +155,7 @@ function checaRenovacaoRG() {
 let anoAtual = prompt("Informe o ano atual")
 let anoNascimento = prompt("Informe em qual ano você nasceu")
 let anoEmissaoRg= prompt("Em qual ano sua carteira de identidade foi emitida?")
-if(anoAtual - anoNascimento > 50 , anoAtual - anoEmissaoRg >= 15) {
+  if(anoAtual - anoNascimento > 50 , anoAtual - anoEmissaoRg >= 15) {
   return true 
   } else 
   return false 
@@ -163,14 +163,14 @@ if(anoAtual - anoNascimento > 50 , anoAtual - anoEmissaoRg >= 15) {
   console.log(renovar(anoAtual, anoNascimento, anoEmissao))
 
 // EXERCÍCIO 14
-function checaAnoBissexto(ano) {
+function checaAnoBissexto() {
 let ano = prompt("Insira um ano")
 let condicao = ano % 400 === 0
 let condicao1 = (ano % 4 === 0) && (ano % 100 !== 0 && !condicao)
-if (condicao, condicao1) {
+  if (condicao, condicao1) {
   return true
 } else
-return false 
+  return false 
 }
 
 // EXERCÍCIO 15
@@ -180,8 +180,8 @@ let pergunta1 = prompt("Você tem mais de 18 anos?").toUpperCase
 let pergunta2 = prompt("Você possui ensino médio completo?").toUpperCase
 let pergunta3 = prompt("Você possui disponibilidade exclusiva durante os horários do curso?").toUpperCase
   if (pergunta1, pergunta2, pergunta3 === 'sim'.toUpperCase) {
-    return true
+  return true
 } else
-return false
+  return false
 }
 console.log(checaValidadeInscricaoLabenu(pergunta1, pergunta2, pergunta3))
