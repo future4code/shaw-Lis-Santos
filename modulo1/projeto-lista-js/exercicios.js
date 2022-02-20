@@ -65,8 +65,8 @@ let string = prompt("Digite um texto")
 
 // EXERCÍCIO 07
 function calculaIngressosEspetaculo(custo, valorIngresso) {
-custo = prompt("Digite o valor do espetáculo")
-valorIngresso = prrompt("Digite o valor do ingresso")
+custo = Number(prompt("Digite o valor do espetáculo"))
+valorIngresso = Number(prrompt("Digite o valor do ingresso"))
   return custo / valorIngresso
 }
 
@@ -166,7 +166,7 @@ if(anoAtual - anoNascimento > 50 , anoAtual - anoEmissaoRg >= 15) {
 function checaAnoBissexto(ano) {
 let ano = prompt("Insira um ano")
 let condicao = ano % 400 === 0
-let condicao1 = (anoBissexto % 4 === 0) && (ano % 100 !== 0 && !condicao)
+let condicao1 = (ano % 4 === 0) && (ano % 100 !== 0 && !condicao)
 if (condicao, condicao1) {
   return true
 } else
@@ -175,7 +175,6 @@ return false
 
 // EXERCÍCIO 15
 function checaValidadeInscricaoLabenu() {
-let perguntas = []
 let aviso = alert("RESPONDA APENAS COM SIM OU NÃO")
 let pergunta1 = prompt("Você tem mais de 18 anos?").toUpperCase
 let pergunta2 = prompt("Você possui ensino médio completo?").toUpperCase
