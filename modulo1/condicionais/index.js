@@ -87,7 +87,7 @@ if (idade >= 18) {
 
 //2. 
 alert("Digite M (matutino), V (vespertino) ou N (noturno)")
-let turno = prompt("Digite M (matutino), V (vespertino) ou N (noturno)")
+let turno = prompt("Digite M (matutino), V (vespertino) ou N (noturno)").toUpperCase
     if (turno === 'M') {
         console.log('Bom dia!') 
     } else if (turno === 'V') {
@@ -98,7 +98,7 @@ let turno = prompt("Digite M (matutino), V (vespertino) ou N (noturno)")
 
 //3. 
 alert("Digite M (matutino), V (vespertino) ou N (noturno)")
-let turno1 = prompt("Digite M (matutino), V (vespertino) ou N (noturno)")
+let turno1 = prompt("Digite M (matutino), V (vespertino) ou N (noturno)").toUpperCase
     switch (turno1) {
         case "=== M":
             console.log("Bom dia!") 
