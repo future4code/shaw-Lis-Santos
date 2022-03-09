@@ -1,0 +1,32 @@
+#nome-rosinha {
+    color: pink;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#formatar-logo-tel {
+    width: 30px;
+    height: 30px;
+}
+
+.table-data{
+    color: white;
+    background-color: rosybrown;
+
+}
+.indice{
+    color: white;
+    background-color: pink;
+}
+.funcionarios-loja{
+
+}
+.cor-input{
+    background-color:pink ;
+}
+h2{
+    color:pink
+}
