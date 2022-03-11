@@ -103,6 +103,11 @@ table {
     text-align: center;
 }
 
+td img{
+    width: 40px;
+    height: 40px;
+}
+
 td button {
     background-color: #fadf63;
     width: 150px;
