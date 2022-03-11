@@ -9,6 +9,10 @@
     padding: 0;
 }
 
+h2, p, li, h3, td, a{
+    font-family:'Roboto', sans-serif;
+}
+
 h2 {
     background-color: #fe7e02;
     padding: 10px 5px 10px 5px;
