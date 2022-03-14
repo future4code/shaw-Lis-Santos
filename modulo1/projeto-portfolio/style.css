@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&display=swap');
+@import url();
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #1E1E2A;
+}
+/* HEADER */
+.header-container{
+height: 100vh;
+width: 100vw;
+background-color: #6951b1;
+background-image: url('img/MMM08119.jpg');
+border-radius: 10%;
+background-repeat: no-repeat;
+background-position: center;
+background-size: contain;
+display: flex;
+flex-direction: column;
+justify-content:center;
+align-items: flex-start;
+box-sizing: border-box;
+padding: 0px 112px;
+position: relative
+}
+
+h1{
+    font-size: 60px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+h2{
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    
+}
+h3{
+    font-weight: bolder;
+    align-items: center;
+    color: #1E1E2A;
+    letter-spacing: 2px;
+    justify-content: center;
+    padding: 50;
+    font-size: 20px;
+}
+
+.social-midia{
+    margin-top: 1rem;
+    display: flex;
+}
+
+.social-midia a{
+    text-decoration: none;
+    color: #1E1E2A;
+    padding: 1rem 4rem;
+    border: 1px solid #1E1E2A;
+    min-width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .5s ease-in-out;
+}
+
+a:hover{
+color: #fff;
+}
+
+/* MENU HAMBURGUER */
+
+.checkbox-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: 400ms ease-in-out 0s;
+}
+
+.checkbox .trace{
+width: 50px;
+height: 2px;
+background-color: #1E1E2A;
+position: absolute;
+border-radius: 4px;
+transition: 0.5s ease-in-out;
+}
+
+.checkbox .trace:nth-child(1) {
+    top: 26px;
+    transform: rotate(0);
+}
+
+.checkbox .trace:nth-child(2) {
+    top: 46px;
+    transform: rotate(0);
+}
+
+.checkbox .trace:nth-child(3) {
+    top: 66px;
+    transform: rotate(0);
+}
+
+#toggle{
+    display: none;
+}
+
+.menu{
+    position:absolute;
+    top: 28px;
+    right: 30px;
+    background-color: transparent;
+    height: 4px;
+    width: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 0px 0px #fff;
+    z-index: -1;
+    transition: 400ms ease-in-out 0s;
+}
+
+.menu-itens{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: 400ms ease-in-out 0s;
+}
+
+.menu-itens ul{
+    list-style-type: none;
+
+}
+
+.menu-itens ul li a{
+    margin: 10px;
+    color: #1E1E2A;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 40px;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(1){
+    transform: rotate(45deg);
+    top: 47px;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(2){
+    transform: translate(-100px);
+    width: 30px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(3){
+    transform: rotate(-45deg);
+    top: 45px;
+}
+
+#toggle:checked + .checkbox{
+    background-color: #fff;
+}
+
+#toggle:checked ~ .menu{
+    box-shadow: 0px 0px 0px 100vmax #fff;
+    z-index: 1;
+}
+
+#toggle:checked ~ .menu-itens{
+visibility: visible;
+opacity: 1;
+}
+
+/* CARDS */ 
+
+.container{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 3rem 0;
+}
+
+.card-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90∞;
+}
+
+.card{
+width: 300px;
+height: 300px;
+border-radius: 100%;
+margin: 3rem 0 0 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #6951b1;
+background-image: url(img/galaxia-roxa.jpeg);
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+filter: grayscale(0.5);
+color: #fff;
+cursor: pointer;
+transition: 0.5s ease-in-out;
+font-weight:900;
+}
+
+.card-text{
+    width: 40%;
+    letter-spacing: 1px;
+    color: rgb(109, 109, 109);
+}
+
+.card-wrapper{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.card-wrapper::before{
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: block;
+    border: 1px solif #fff;
+    opacity: 0;
+    transition: 0s ease-in-out;
+}
+
+.card-wrapper h2{
+    font-size: 40px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    transition: 0.5 ease-in-out;
+}
+
+.card-wrapper p{
+    font-size: 0;
+    visibility: visible;
+    opacity: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.5s ease-in-out;
+}
+
+.card:hover{
+    filter: unset
+}
+
+.card:hover > .card-wrapper::before{
+    height: 200px;
+    width: 200px;
+    opacity: 1;
+}
+
+.card:hover > .card-wrapper p{
+    opacity: 1;
+    visibility: visible;
+    font-size: 14px;
+}
+
+/* Fotter */ 
+.links{
+    background-image: url(img/instagram.jpeg);
+}
+
+footer{
+    background: #6951b1;
+}
+
+.footer{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.footer a{
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    background: #fff;;
+    color: white;
+    margin: 0 3px;
+    border-radius: 50%;
+    align-items:unset;
+    justify-content: center;
+    transition: 0.5s;
+    font-size: 23px;
+    text-decoration: none;
+}
+.footer a:hover{
+    background: #a79eaf;
+}
+.footer a i{
+    transition: 0.5s all;
+}
+
+.footer a:hover > i{
+    transform: scale(1.4)rotate(26deg)
+}
+
+.about-me{
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 100vh;
+    background-color: #6951b1;
+    padding-left: 10%;
+} 
+
+.about-me .table{
+    margin: 100px;
+    height: auto;
+    width: auto;
+    padding: 130px;
+    background-color: transparent;
+    border-radius: 30px;
+    margin: 2px;
+    justify-content: center;
+    text-align: center;
+    padding: 100px;
+
+}
+
+th{
+    color: #fff;
+    font-weight: bold;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 130px;
+} 
+
+td{
+    color:#fff;
+    font-weight: bold;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    display: flex;;
+}
+
+button{
+   padding: 0px;
+   margin-top: 0px;
+   margin-right: 0px;
+   margin-bottom: 3px;
+   color:#6951b1
+}
+button:hover{
+    color:#fff;
+}
+
+form{
+    display: flex;
+    font-weight: bolder;
+}
+#titulo{
+  font-family: sans-serif;  
+  color: #380861;
+  margin-left: 7%;
+}
+
+#subtitulo{
+font-family: sans-serif;
+color: #380861;
+margin-left: 10%;
+}
+fieldset{
+    border:0;
+}
+
+input, button{
+border-radius: 5px;
+}
+
+.formatar-texto-sobre-mim{
+   margin-left: 0;
+   margin-right: 0;
+    padding-left: 0%;
+    padding-right: 5%;
+    text-align: center;
+    display: flex;
+}
+.formatar-texto-sobre-mim:hover{
+    background-color:rgb(255, 255, 255, 0.2);
+}
+
+.organizar-tabela{
+    background:#6951b1;
+    color: #1E1E2A;
+    height: 100vh;
+    width: 100vw;
+}
+
+.galeria-de-projetos{
+    letter-spacing: 2px;
+    font-size: 30px;
+    text-align: center;
+}
+td img{
+    height: 200px;
+    width: 200px;
+}
+
+table{
+    justify-content: center;
+}
+
+.footer i{
+    background-image: url(img/insta.svg);
+}
+
+footer .footer{
+    text-align: center;
+}
