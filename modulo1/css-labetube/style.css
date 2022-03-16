@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container{
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    color: #1E1E2A;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: mediumpurple;
+    height: 8vh;
+}
+
+h1{
+    font-size: 16px;
+    display: flex;
+    color: #1E1E2A;
+}
+h2{
+    padding: 4px;
+    display: flex;
+}
+
+form{
+    border: 1px solid whitesmoke;
+    border-radius: 0.3em;
+    padding: 0.3em;
+}
+
+form input, button{
+    font-size: 1.2em;
+    border-radius: 0.2em;
+    border: none;
+    padding: 0.2em;
+}
+
+form button{
+    cursor: pointer;
+    background: none;
+    color: whitesmoke;
+}
+
+form button:hover{
+    background-color: whitesmoke;
+    color: mediumpurple;
+}
+
+main{
+    display: flex;
+    flex-grow: 1;
+}
+
+.parte-principal{
+    background-color: rgb(147, 126, 189, 0.5);
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: auto-fill;
+    grid-gap: 16px;
+}
+
+.card-video{
+    width: 16.625em;
+    border: 1px solid black;
+    background-color: rgb(48, 3, 48, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px 8px;
+    border-radius: 10%;
+    justify-content: center;
+}
+
+.card-video video{
+    width: 100%;
+    height: 100%;
+}
+
+.card-video h1{
+    padding: 8px;
+}
+
+
+footer{
+    align-items: center;
+    justify-content: center;
+    background-color: mediumpurple;
+    display: flex;
+    height: 8vh;
+}
+    
