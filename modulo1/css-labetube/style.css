@@ -6,36 +6,35 @@
     box-sizing: border-box;
 }
 
-#container{
-
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
 body{
     font-family: 'Poppins', sans-serif;
     color: #1E1E2A;
 }
 
+#container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
 header{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     background-color: mediumpurple;
     height: 8vh;
 }
 
-h1{
-    font-size: 16px;
-    display: flex;
-    color: #1E1E2A;
-}
 h2{
-    padding: 4px;
-    display: flex;
+    padding: 0.1em;
 }
 
 form{
+    display: flex;
+    flex-wrap: wrap;
     border: 1px solid whitesmoke;
     border-radius: 0.3em;
     padding: 0.3em;
@@ -62,27 +61,43 @@ form button:hover{
 main{
     display: flex;
     flex-grow: 1;
+    flex-wrap: wrap;
 }
 
 .parte-principal{
     background-color: rgb(147, 126, 189, 0.5);
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-template-rows: auto-fill;
-    grid-gap: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.quadrado{
+    background-color: rebeccapurple;
+    border: 0.02em solid white;
+    margin: 0.4em;
+    border-radius: 1em;
+    width: 20vw;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.texto h1{
+        font-size: 1.2em;
+        color: #1E1E2A;
+        text-align: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        cursor: pointer;
+}
+
+.texto h1:hover{
+    background-color: rgb(248, 248, 248, 0.2);
 }
 
 .card-video{
-    width: 16.625em;
-    border: 1px solid black;
-    background-color: rgb(48, 3, 48, 0.8);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 8px 8px;
-    border-radius: 10%;
-    justify-content: center;
+    width: 100%;
+    height: 90%;
+    cursor: pointer;
 }
 
 .card-video video{
@@ -90,16 +105,29 @@ main{
     height: 100%;
 }
 
-.card-video h1{
-    padding: 8px;
-}
-
-
 footer{
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background-color: mediumpurple;
     display: flex;
     height: 8vh;
 }
-    
+
+.roxinho{
+    margin-left: 35em;
+}
+
+#botao-footer{
+    background-color: whitesmoke;
+    color: mediumpurple;
+    cursor: pointer;
+    margin: 0.1em;
+}
+#botao-footer:hover{
+    background-color: mediumpurple;
+    color: whitesmoke;
+}
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+}
+
