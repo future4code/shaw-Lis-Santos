@@ -59,13 +59,13 @@ form button:hover{
 }
 
 main{
+    background-color: rgb(147, 126, 189, 0.5);
     display: flex;
     flex-grow: 1;
     flex-wrap: wrap;
 }
 
 .parte-principal{
-    background-color: rgb(147, 126, 189, 0.5);
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -130,4 +130,3 @@ footer{
 
 @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
 }
-
