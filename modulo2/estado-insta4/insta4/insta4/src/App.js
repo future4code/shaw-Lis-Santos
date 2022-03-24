@@ -10,27 +10,45 @@ const MainContainer = styled.div`
 `
 
 class App extends React.Component {
+  state = {
+    post: [
+      {
+        nomeUsuario: 'paulinha',
+        fotoUsuario: 'https://picsum.photos/50/50?a=1',
+        fotoPost: 'https://picsum.photos/200/150?a=2'
+      },
+      
+      {
+        nomeUsuario: 'lis',
+        fotoUsuario: 'https://picsum.photos/50/50?a=3',
+        fotoPost: 'https://picsum.photos/200/150?a=4'
+      },
+
+      {
+        nomeUsuario:'júlia',
+        fotoUsuario:'https://picsum.photos/50/50?a=5',
+        fotoPost:'https://picsum.photos/200/150?a=6'
+
+      }
+    ]
+    }
   render() {
+        const listaDeComponentes = this.state.post.map((post) => {
     return (
-      <MainContainer>
         <Post
-          nomeUsuario={'paulinha'}
-          fotoUsuario={'https://picsum.photos/50/50?a=1'}
-          fotoPost={'https://picsum.photos/200/150?a=2'}
+          nomeUsuario={post.nomeUsuario}
+          fotoUsuario={post.fotoUsuario}
+          fotoPost={post.fotoPost}
         />
-        <Post
-          nomeUsuario={'lis'}
-          fotoUsuario={'https://picsum.photos/50/50?a=3'}
-          fotoPost={'https://picsum.photos/200/150?a=4'}
-        />
-        <Post
-         nomeUsuario={'júlia'}
-          fotoUsuario={'https://picsum.photos/50/50?a=5'}
-          fotoPost={'https://picsum.photos/200/150?a=6'}
-        />
-      </MainContainer>
-    );
+    )
+        })
+        console.log(listaDeComponentes)
+        return (
+          <MainContainer>
+            {listaDeComponentes}
+          </MainContainer>
+        );
   }
-}
+}    
 
 export default App;
