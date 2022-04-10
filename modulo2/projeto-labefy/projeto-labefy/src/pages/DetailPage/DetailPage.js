@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { Form, Label, Input, ButtonAdicionar, Bloco, Tittle, Tela, Button2, CardMusic, Musicas} from "./styled"
+import { Form, Label, Input, ButtonAdicionar, Bloco, Tittle, Tela, Button2, CardMusic, Musicas } from "./styled"
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+
 
 export default class DetailPage extends React.Component {
     state = {
@@ -68,7 +71,13 @@ export default class DetailPage extends React.Component {
         const listaMusicas = this.state.musicas.map((musica) => {
             return <CardMusic
                 key={musica.id}>
-                <audio controls src={musica.url} type="audio/mp3"></audio>{musica.name} <br/>{musica.artist}
+               <AudioPlayer
+                        src={musica.url}
+                        layout={"horizontal"}
+                        showJumpControls={false}
+                        customControlsSection={['MAIN_CONTROLS', 'VOLUME_CONTROLS']}
+                    />
+                    {musica.name} <br />{musica.artist}
             </CardMusic>
 
         })
