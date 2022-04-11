@@ -52,7 +52,7 @@ font-family: "Indie Flower";
 export const Bloco = styled.div`
 border: 0.5px solid black;
 width: 350px;
-height: 710px;
+height: 690px;
 padding-bottom: 15px;
 border-radius: 10%;
 `
