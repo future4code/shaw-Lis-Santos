@@ -36,6 +36,8 @@ margin: 10px;
 width: 270px;
 justify-content: space-between;
 border-radius: 10%;
+&:hover{
+    background-color: #ffebcd
 }
 `
 
