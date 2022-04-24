@@ -21,7 +21,7 @@ display: flex;
 flex-direction: column;
 border: 4px solid #48a498;
 min-width: 300px;
-height: 500px;
+min-height: 500px;
 margin-top: 10px;
 align-self: center;
 text-align: center;
@@ -45,8 +45,10 @@ export const Button = styled.button `
 width: 20px;
 background-color: transparent;
 border: transparent;
-align-self: flex-end;
-color: #fff;
+align-self: center;
+justify-content: center;
+align-items: center;
+color: #752d92;
 margin-top: 1px;
 font-size: 20px;
 
@@ -88,14 +90,19 @@ color: #fff;
 background-color: #48a498;
 `
 
-export const Center = styled.div `
-margin-top: -10px;
-`
+// export const Center = styled.div `
+// margin-top: -10px;
+// `
 
 export const Centralizar = styled.div `
+display: flex;
 align-items: center;
-align-self: center;
-justify-content:center;
-text-align: center;
+width: 100%;
+height: 10%;
+padding: 35px 10px;
+`
 
+export const Ajustar = styled.div `
+margin-left: 10px;
+font-weight: 900px;
 `

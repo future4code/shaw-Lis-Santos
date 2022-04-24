@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/constants'
-import {Tela, BlocoMaior, Bloco, Button, Match, Button3, Centralizar} from './styled'
+import {Tela, BlocoMaior, Bloco, Button, Match, Button3, Centralizar, Ajustar} from './styled'
 import Card from '../../components/Card/Card'
 
 export default function Matches(props) {
@@ -36,7 +36,8 @@ export default function Matches(props) {
         return (
    
                 <Centralizar>
-                <p> <img src={person.photo} width="300px" height="300px" /></p> <p> <b> {person.name} </b>  </p>
+                <img src={person.photo} width="200px" height="200px" />
+                 <Ajustar> <b> {person.name} </b>  </Ajustar>
                </Centralizar>
                
             
@@ -50,11 +51,11 @@ return (
             <Card
              />
             <Match>
+                <Button onClick={props.goToHomePage}> <i class="fa-solid fa-rotate-left"></i></Button>
             {matches}
             </Match>
             </Bloco>
             </BlocoMaior>
-        <Button onClick={props.goToHomePage}> <i class="fa-solid fa-rotate-left"></i></Button>
         <Button3 class="button" onClick={() => putClear()}> clear matches</Button3>
         
         </Tela>
