@@ -51,7 +51,7 @@ align-items: center;
 color: #752d92;
 margin-top: 1px;
 font-size: 20px;
-
+cursor: pointer;
 `
 export const Button2 = styled.button`
 display: flex;
@@ -89,11 +89,6 @@ margin-right: 8px;
 color: #fff;
 background-color: #48a498;
 `
-
-// export const Center = styled.div `
-// margin-top: -10px;
-// `
-
 export const Centralizar = styled.div `
 display: flex;
 align-items: center;
