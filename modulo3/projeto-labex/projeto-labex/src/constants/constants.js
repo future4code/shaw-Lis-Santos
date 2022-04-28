@@ -1,1 +1,1 @@
-export const base_url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/:aluno/"
+export const base_url = "https://us-central1-labenu-apis.cloudfunctions.net/labeX/lis-ribeiro-shaw/"

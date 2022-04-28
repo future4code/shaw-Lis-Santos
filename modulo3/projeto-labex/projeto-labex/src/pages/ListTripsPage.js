@@ -58,6 +58,7 @@ export const ListTripsPage = () => {
                 <p>  <b>Planeta:</b>{trip.planet} </p>
                 <p> <b>Duração:</b>{trip.durationInDays} dias </p>
                 <p>  <b>Data:</b>{trip.date} </p>
+                <button onClick={() => navigate(`admin/trips/${trip.id}`)}>Ver Detalhes</button>
             </Card>
         )
 
