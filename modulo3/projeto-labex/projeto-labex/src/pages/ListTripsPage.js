@@ -50,6 +50,24 @@ export const ListTripsPage = () => {
         getTrips()
     }, [])
 
+    const deleteTrip = (id) => {
+        const url = `${base_url}trips/${id}`
+        const headers = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVCcXR3SmdUODRFUHRnTFFRUW1oIiwiZW1haWwiOiJsYWItYm90QGdtYWlsLmNvbSIsImlhdCI6MTY1MTE1NDcwNH0.WGYwkNy6zgcT7fU6P4kcJ_uwL_EmwErv2JHngVkM9P0"
+                }
+            
+        }
+
+        axios.delete(url, headers)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+        console.log(err)
+    })
+}
     const travel = trips.map((trip) => {
         return (
             <Card key={trip.id}>
@@ -59,11 +77,10 @@ export const ListTripsPage = () => {
                 <p> <b>Duração:</b>{trip.durationInDays} dias </p>
                 <p>  <b>Data:</b>{trip.date} </p>
                 <button onClick={() => navigate(`admin/trips/${trip.id}`)}>Ver Detalhes</button>
+                <button onClick={() => deleteTrip(trip.id) }> Delete</button>
             </Card>
         )
-
     })
-
 
     return (
         <div>

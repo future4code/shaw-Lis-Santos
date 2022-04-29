@@ -6,75 +6,36 @@ import { base_url } from "../constants/constants";
 
 export const AdminHomePage = () => {
     const navigate = useNavigate()
-    const [name, setName] = useState("")
-    const [description, setDescripition] = useState("")
-    const [planet, setPlanet] = useState("")
-    const [durationInDays, setDurationInDays] = useState(0)
-    const [date, setDate] = useState(0)
+    const [trips, setTrips] = useState([])
 
-    const createTrip = () => {
+    const getTrips = () => {
         const url = `${base_url}trips`
-        const body = {
-            name: name,
-            planet: planet,
-            date: date,
-            description: description,
-            durationInDays: durationInDays
-        }
-        axios.post(url, body)
+        axios.get(url)
             .then((res) => {
-
+                setTrips(res.data.trips)
             })
             .catch((err) => {
                 console.log(err)
             })
     }
+
     useEffect(() => {
-        createTrip()
+        getTrips()
     }, [])
 
-    const onChangeName = e => {
-        setName(e.target.value)
-    }
-
-    const onChangeDescription = e => {
-        setDescripition(e.target.value)
-    }
-
-    const onChangePlanet = e => {
-        setPlanet(e.target.value)
-    }
-
-    const onChangeDurationInDays = e => {
-        setDurationInDays(e.target.value)
-    }
-
-    const onChangeDate = e => {
-        setDate(e.target.value)
-    }
+    const tripsName = trips.map((tripName) => {
+        return (
+            <div key={tripName.id}>
+                {tripName.name} 
+               <button onClick={() => navigate(`admin/trips/${trips.id}`)}>Ver Detalhes</button>
+            </div>
+        )
+    })
 
     return (
         <div>
             <p>Admin Home Page</p>
-        <form> 
-            <input
-            placeholder="Nome"
-            value={name}
-            onChange={onChangeName}
-            />
-            <select name="planetas" id="planetas">
-                    <option value="Escolha um Planeta" selected="Escolha um Planeta"> Planeta </option>
-                    <option value="Mercúrio">Mercúrio</option>
-                    <option value="Vênus">Vênus</option>
-                    <option value="Terra">Terra</option>
-                    <option value="Marte">Marte</option>
-                    <option value="Júpiter">Júpiter</option>
-                    <option value="Saturno">Saturno</option>
-                    <option value="Urano">Urano</option>
-                    <option value="Netuno">Netuno</option>
-                    <option value="Plutã0">Plutão</option>
-            </select>
-        </form>
+            {tripsName}
             <button onClick={() => goToHomePage(navigate)}>Voltar</button>
             <button onClick={() => goToCreateTripPage(navigate)}>Criar Viagem</button>
             <button onClick={() => goToLogin(navigate)}>Logout</button>

@@ -3,87 +3,144 @@ import { useNavigate } from "react-router";
 import { goBack } from "../routes/coordinator"
 import axios from "axios";
 import { base_url } from "../constants/constants";
+import useForm from "../hooks/useForms";
+import dataJson from '../json/paises-array.json'
 
 export const ApplicationFormPage = () => {
     const navigate = useNavigate()
-    const [name, setName] = useState('')
-    const [age, setAge] = useState('')
-    const [application, setApplication] = useState('')
-    const [profession, setProfession] = useState('')
-    const [country, setCountry] = useState('')
 
-    const applyToTrip = (id) => {
-        const url = `${base_url}trips/${id}/apply`
-        const body = {
-            name: name,
-            age: age,
-            applicationText: application,
-            profession: profession,
-            country: country
+    const [trips, setTrips] = useState([])
+    const [tripId, setTripId] = useState("")
+    const [country, setCountry] = useState("")
+
+    const { form, onChange, clearFields } = useForm({
+        name: "",
+        age: "",
+        applicationText: "",
+        profession: "",
+        country: ""
+    })
+
+    const onChangeCountry = (e) => {
+        e.preventDefault()
+        setCountry(e.target.value)
+    }
+
+    const applyToTrip = (e) => {
+        e.preventDefault()
+        const url = `${base_url}trips/${tripId}/apply`
+        const headers = {
+            headers: {
+                "Content-Type": "application/json",
+            },
         }
-        axios.get(url, body)
+        console.log(form)
+        // const newForm = {
+        //     ...form, 
+        //      country
+
+        axios.post(url, form, headers)
             .then((res) => {
                 console.log(res)
             })
             .catch((err) => {
-                console.log(err.res.data)
+                console.log(err)
             })
+    }
+    // useEffect(() => {
+    //     applyToTrip()
+    // }, [])
 
-        useEffect = (() => {
-            applyToTrip()
-        }, [])
+    const getTrips = () => {
+        const url = `${base_url}trips`
+        axios.get(url)
+            .then((res) => {
+                setTrips(res.data.trips)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
-    const onChangeName = e => {
-        setName(e.target.value)
+    const setId = (e) => {
+        setTripId(e.target.value)
     }
 
-    const onChangeAge = e => {
-        setAge(e.target.value)
-    }
+    useEffect(() => {
+        getTrips()
+    }, [])
 
-    const onChangeApplication = e => {
-        setApplication(e.target.value)
-    }
+    const tripNameAndID = trips.map((trip) => {
+        // console.log(trip)
+        return (
 
-    const onChangeProfession = e => {
-        setProfession(e.target.value)
-    }
+            <option key={trip.id} value={trip.id}>{trip.name}</option>
 
-    const onChangeCountry = e => {
-        setCountry(e.target.value)
-    }
+        )
+    })
+
+
+    // console.log(country)
     return (
         <div>
             <p>Application Form Page</p>
-            <form>
-                <select>
+            <form onSubmit={applyToTrip}>
+                <select onChange={setId}>
                     <option>
                         Escolha uma viagem
                     </option>
+                    {/* <option>{tripNameAndID[0]}</option>
+                    <option>{tripNameAndID[1]}</option>
+                    <option>{tripNameAndID[2]}</option>
+                    <option>{tripNameAndID[3]}</option> */}
+                    {tripNameAndID}
                 </select>
                 <input
                     placeholder="Nome"
-                    value={name}
-                    onChange={onChangeName}
+                    name="name"
+                    value={form.name}
+                    onChange={onChange}
+                    required
+                    pattern={"^.{3,}"}
+                    title={"O nome deve ter no mínimo 3 caracteres"}
                 />
                 <input
                     placeholder="Idade"
-                    value={age}
-                    onChange={onChangeAge}
+                    name="age"
+                    type="number"
+                    value={form.age}
+                    onChange={onChange}
+                    required
+                    min={"18"}
                 />
                 <input
                     placeholder="Texto de candidatura"
-                    value={application}
-                    onChange={onChangeApplication}
+                    name="applicationText"
+                    required
+                    value={form.applicationText}
+                    onChange={onChange}
+                    required
+                    pattern={"^.{30,}"}
+                    title={"O texto deve ter no mínimo 30 caracteres"}
                 />
                 <input
                     placeholder="Profissão"
-                    value={profession}
-                    onChange={onChangeProfession}
+                    name="profession"
+                    value={form.profession}
+                    onChange={onChange}
+                    required
+                    pattern={"^.{10,}"}
+                    title={"O texto deve ter no mínimo 10 caracteres"}
                 />
-                <select name="paises" id="paises">
-                    <option value="País" selected="País"> País </option>
+                <select className="selectPais" onChange={onChangeCountry}>
+                    {dataJson.map((country) => {
+                        {console.log(country.nome)}
+                        <div key={country.nome}>
+                            <option>{country.nome}</option>
+                        </div>
+                    })}
+
+                    {/* <option value="País" selected="País"> País </option>
                     <option value="Brasil">Brasil</option>
                     <option value="Afeganistão">Afeganistão</option>
                     <option value="África do Sul">África do Sul</option>
@@ -333,10 +390,9 @@ export const ApplicationFormPage = () => {
                     <option value="Vietname">Vietname</option>
                     <option value="Wallis e Futuna">Wallis e Futuna</option>
                     <option value="Zimbabwe">Zimbabwe</option>
-                    <option value="Zâmbia">Zâmbia</option>
+                    <option value="Zâmbia">Zâmbia</option> */}
                 </select>
-
-
+                <button>Cadastrar</button>
             </form>
             <button onClick={() => goBack(navigate)}>Voltar</button>
         </div>

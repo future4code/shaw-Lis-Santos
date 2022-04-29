@@ -1,30 +1,26 @@
-import React, { useState, usEffect } from "react";
+import React, { useState, usEffect, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { goBack, goToAdminHomePage } from "../routes/coordinator";
 import axios from "axios";
 import { base_url } from "../constants/constants";
+import useForm from "../hooks/useForms";
+
 
 export const LoginPage = () => {
     const navigate = useNavigate()
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
 
-    const onChangeEmail = e => {
-        setEmail(e.target.value)
-    }
+    const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
 
-    const onChangePassword = e => {
-        setPassword(e.target.value)
-    }
-
-    const login = () => {
-        console.log(email, password)
+    const login = (e) => {
+        e.preventDefault()
+        console.log(form)
         const url = `${base_url}login`
-        const body = {
-            email: email,
-            password: password
+        const headers = {
+            headers: {
+                ContentType: "application/json"
+            }
         }
-        axios.post(url, body)
+        axios.post(url, form, headers)
             .then((res) => {
                 console.log(res.data.token)
                 localStorage.setItem('token', res.data.token)
@@ -38,22 +34,26 @@ export const LoginPage = () => {
     return (
         <div>
             <p>Login Page</p>
-            <input
-                placeholder="email"
-                type="email"
-                value={email}
-                onChange={onChangeEmail}
-            />
-
-            <input
-                placeholder="password"
-                type="password"
-                value={password}
-                onChange={onChangePassword}
-            />
+            <form onSubmit={login}>
+                <input
+                    placeholder="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={onChange}
+                />
+                <input
+                    placeholder="password"
+                    name="password"
+                    type="password"
+                    required
+                    value={form.password}
+                    onChange={onChange}
+                />
+                <button>Enviar</button>
+            </form>
             <button onClick={() => goBack(navigate)}>Voltar</button>
-            {/* <button onClick={() => goToAdminHomePage(navigate)}>Entrar</button> */}
-            <button onClick={login}>Enviar</button>
         </div>
     )
 }
