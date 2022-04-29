@@ -19,6 +19,25 @@ export const AdminHomePage = () => {
             })
     }
 
+    const deleteTrip = (id) => {
+        const url = `${base_url}trips/${id}`
+        const headers = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVCcXR3SmdUODRFUHRnTFFRUW1oIiwiZW1haWwiOiJsYWItYm90QGdtYWlsLmNvbSIsImlhdCI6MTY1MTE1NDcwNH0.WGYwkNy6zgcT7fU6P4kcJ_uwL_EmwErv2JHngVkM9P0"
+                }
+            
+        }
+
+        axios.delete(url, headers)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+        console.log(err)
+    })
+}
+
     useEffect(() => {
         getTrips()
     }, [])
@@ -27,7 +46,8 @@ export const AdminHomePage = () => {
         return (
             <div key={tripName.id}>
                 {tripName.name} 
-               <button onClick={() => navigate(`admin/trips/${trips.id}`)}>Ver Detalhes</button>
+               {/* <button onClick={() => navigate(`admin/trips/${trips.id}`)}>Ver Detalhes</button> */}
+               <button onClick={() => deleteTrip(tripName.id) }> Delete</button>
             </div>
         )
     })
