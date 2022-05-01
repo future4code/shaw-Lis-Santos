@@ -1,14 +1,59 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { goToAdminHomePage } from "../routes/coordinator";
-import axios from "axios";
 import { base_url } from "../constants/constants";
 
+
+const Card = styled.div`
+display: flex;
+flex-direction: column;
+ font-family: "Indie Flower";
+ border: 1px solid blue;
+ padding: 15px; 
+ margin: 10px;
+ width: 17vw;
+ height: 35vh;
+justify-content: space-between; 
+text-align: center;
+ flex-wrap: wrap;
+ border-radius: 10%;
+ `
+
+const Card2 = styled.div`
+display: flex;
+flex-direction: column;
+ font-family: "Indie Flower";
+ text-align: center;
+ border: 1px solid blue;
+ padding: 15px; 
+ margin: 10px;
+ width: 6vw;
+ height: 10vh;
+ flex-wrap: wrap;
+ border-radius: 10%;
+ `
+ const Button = styled.button`
+ background: none;
+ border: 0.5px solid blue;
+ justify-content: center;
+ text-align: center;
+ align-self: center;
+ width: 3vw;
+ height: 2.5vh;
+ &:hover{
+     cursor: pointer;
+     background-color: #F0F8FF;
+ }
+ `
+
 export const TripDetailsPage = () => {
-    const [trips, setTrips] = useState([])
+    const [tripDetails, setTripDetails] = useState({})
     const navigate = useNavigate()
     const params = useParams()
+    const token = localStorage.getItem("token")
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -18,8 +63,7 @@ export const TripDetailsPage = () => {
         }
     }, [])
 
-    useEffect(() => {
-        const token = localStorage.getItem('token')
+    const getTripsDetails = () => {
         const url = `${base_url}trip/${params.id}`
         const headers = {
             headers: {
@@ -28,28 +72,89 @@ export const TripDetailsPage = () => {
         }
         axios.get(url, headers)
             .then((res) => {
-                console.log(res.data)
-                setTrips([res.data])
+                console.log(res.data.trip)
+                setTripDetails(res.data.trip)
             })
             .catch((err) => {
-                console.log(err.res)
+                console.log(err.res.trip)
             })
 
-    }, [])
+    }
 
-    const travel = trips.map((trip) => {
-        return(
-            <div key={trip.trip.id}>
-                {trip.trip.name}
-            </div>
+    const listCandidates = tripDetails.candidates && tripDetails.candidates.map((candidate) => {
+        return (
+            <Card>
+                <div key={candidate.id} >
+                <p><b> Nome: </b>{candidate.name}</p>
+                <p><b> Idade: </b> {candidate.age}</p>
+                <p> <b> Profissão: </b>{candidate.profession}</p>
+                <p> <b> País: </b>{candidate.country}</p>
+                <p> <b> Texto de Candidatura </b>{candidate.applicationText}</p>
+                <button onClick={() => decideCandidates(candidate.id, true)}>Aprovar</button>
+                <button onClick={() => decideCandidates(candidate.id, false)}>Reprovar</button>
+            </div >
+            </Card>
         )
     })
 
+const listApproved = tripDetails.approved && tripDetails.approved.map((person) => {
     return (
+        <Card2>
         <div>
-            <p>Trip Details Page</p>
-            {travel}
-            <button onClick={() => goToAdminHomePage(navigate)}>Voltar</button>
+            <p>
+                {person.name}
+            </p>
         </div>
+        </Card2>
     )
+})
+
+console.log(tripDetails)
+useEffect(() => {
+    getTripsDetails()
+}, [])
+const decideCandidates = (candidateId, boolean) => {
+    const body = { approve: boolean };
+    const token = localStorage.getItem("token");
+
+    axios
+        .put(
+            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/lis-ribeiro-shaw/trips/${params.id}/candidates/${candidateId}/decide`,
+            body,
+            {
+                headers: {
+                    auth: token,
+                },
+            }
+        )
+        .then((res) => {
+            alert("Transação aceita!");
+        })
+        .catch((err) => {
+            console.log(err.res);
+        });
+};
+
+useEffect(() => {
+    getTripsDetails()
+}, [])
+
+return (
+    <div>
+        <h2> {tripDetails.name}</h2>
+        <p> <b> Nome: </b>{tripDetails.name} </p>
+        <p> <b> Descrição:  </b> {tripDetails.description} </p>
+        <p> <b> Planeta: </b>{tripDetails.planet} </p>
+        <p> <b> Duração:  </b>{tripDetails.durationInDays} </p>
+        <p> <b> Data:</b> {tripDetails.date} </p>
+
+        <div>
+            <h3>Candidatos pendentes</h3>
+            {listCandidates}
+            <h3>Candidatos Aprovados</h3>
+            {listApproved}
+        </div>
+        <Button onClick={() => goToAdminHomePage(navigate)}>Voltar</Button>
+    </div>
+)
 }

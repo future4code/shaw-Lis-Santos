@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { goToHomePage, goToApplicationFormPage } from "../routes/coordinator";
-import axios from "axios";
 import { base_url } from "../constants/constants";
-import styled from "styled-components";
+import BackgroundCard from "../img/background-card.webp"
 
 const Tela = styled.div`
 display: flex;
@@ -12,24 +13,56 @@ flex-wrap: wrap;
 width: 100vw;
 height: 100vh;
 justify-content: space-between;
-
 `
+
+// const Header = styled.header `
+// width: 20vw;
+// height: 20vh;
+// justify-content: flex-end;
+// text-align: flex-end;
+// align-self: flex-end;
+// `
 
 const Card = styled.div`
 display: flex;
 flex-direction: column;
  font-family: "Indie Flower";
- border: 1px solid black;
+ border: 1px solid blue;
  padding: 15px; 
  margin: 10px;
- width: 260px;
- height: 200px;
-justify-content: center; 
+ width: 20vw;
+ height: 35vh;
+justify-content: space-between; 
 text-align: center;
  flex-wrap: wrap;
  border-radius: 10%;
+ 
  `
 
+ const Spacing = styled.div `
+justify-content: space-between;
+text-align: space-between;
+align-self: space-between;
+ `
+
+const Button = styled.button`
+background: none;
+border: 0.5px solid blue;
+justify-content: center;
+text-align: center;
+align-self: center;
+width: 7vw;
+height: 5vh;
+&:hover{
+    cursor: pointer;
+    background-color: #F0F8FF;
+}
+`
+// const Tittle = styled.h1`
+// justify-content: center;
+// text-align: center;
+// align-self: center;
+// `
 
 export const ListTripsPage = () => {
     const navigate = useNavigate()
@@ -50,34 +83,14 @@ export const ListTripsPage = () => {
         getTrips()
     }, [])
 
-//     const deleteTrip = (id) => {
-//         const url = `${base_url}trips/${id}`
-//         const headers = {
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                     "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVCcXR3SmdUODRFUHRnTFFRUW1oIiwiZW1haWwiOiJsYWItYm90QGdtYWlsLmNvbSIsImlhdCI6MTY1MTE1NDcwNH0.WGYwkNy6zgcT7fU6P4kcJ_uwL_EmwErv2JHngVkM9P0"
-//                 }
-            
-//         }
-
-//         axios.delete(url, headers)
-//         .then((res) => {
-//             console.log(res)
-//         })
-//         .catch((err) => {
-//         console.log(err)
-//     })
-// }
     const travel = trips.map((trip) => {
         return (
             <Card key={trip.id}>
                 <p> <b>Nome: </b> {trip.name} </p>
                 <p> <b>Descrição: </b> {trip.description} </p>
-                <p>  <b>Planeta:</b>{trip.planet} </p>
-                <p> <b>Duração:</b>{trip.durationInDays} dias </p>
-                <p>  <b>Data:</b>{trip.date} </p>
-                <button onClick={() => navigate(`admin/trips/${trip.id}`)}>Ver Detalhes</button>
-                {/* <button onClick={() => deleteTrip(trip.id) }> Delete</button> */}
+                <p>  <b>Planeta:</b> {trip.planet} </p>
+                <p> <b>Duração:</b> {trip.durationInDays} dias </p>
+                <p>  <b>Data:</b> {trip.date} </p>
             </Card>
         )
     })
@@ -85,12 +98,15 @@ export const ListTripsPage = () => {
     return (
         <div>
             <Tela>
-                <p>List Trips Page</p>
+                
+              
+                {/* <Tittle>Lista de Viagens</Tittle> */}
+                
                 {travel}
-                <div>
-                    <button onClick={() => goToHomePage(navigate)}>Voltar</button>
-                    <button onClick={() => goToApplicationFormPage(navigate)}>Inscrever-se</button>
-                </div>
+                <Spacing>
+                    <Button onClick={() => goToHomePage(navigate)}>Voltar</Button>
+                    <Button onClick={() => goToApplicationFormPage(navigate)}>Inscrever-se</Button>
+                </Spacing>
             </Tela>
         </div>
     )
