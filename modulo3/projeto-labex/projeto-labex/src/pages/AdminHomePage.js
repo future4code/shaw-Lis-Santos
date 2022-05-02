@@ -19,45 +19,45 @@ width: 25vw;
 height: 7vh;
 margin: 10px;
 border: 0.5px solid blue;
-justify-content: space-between;
+/* justify-content: space-between; */
+border-radius: 10%;
+
 &:hover{
     cursor: pointer;
+    border: 0.5px solid #fda626;
+}
+`
+const Posicionar = styled.div`
+display: flex;
+ul{
+
+    align-self: center;
 }
 `
 
-// export const CardPlaylist = styled.div`
-//  display: flex;
-//  font-family: "Indie Flower";
-//  border: 1px solid black;
-//  padding: 15px; 
-//  margin: 10px;
-//  width: 270px;
-//  justify-content: space-between;
-//  border-radius: 10%;
-//  &:hover{
-//      background-color: #ffebcd
-//  }
-//  `
-
-const Spacing = styled.div `
-justify-content: space-between;
-text-align: space-between;
-align-self: space-between;
-
- `
+const Tittle = styled.div`
+h1 {
+    display: flex;
+    justify-content: center;
+}
+`
 
 const Button = styled.button`
-flex-direction: row;
+/* display: block; */
 background: none;
 border: 0.5px solid blue;
 text-align: center;
-align-self: flex-end;
+/* align-self: flex-end;
+justify-content: flex-end; */
 width: 3vw;
 height: 3vh;
 border-radius: 20%;
+margin-left: 6px;
 &:hover{
     cursor: pointer;
-    background-color: #F0F8FF;
+    /* background-color: #F0F8FF; */
+    border: 0.5px solid #fda626;
+}
 }
 `
 
@@ -72,7 +72,7 @@ height: 3vh;
 border-radius: 20%;
 &:hover{
     cursor: pointer;
-    background-color: #F0F8FF;
+    border: 0.5px solid #fda626;
 }
 `
 
@@ -124,29 +124,45 @@ export const AdminHomePage = () => {
 
     const tripsName = trips.map((tripName) => {
         return (
-            <div>
-                 <Card>
-                     <Spacing>
-                <ul key={tripName.id} onClick={() => goToTripDetailPage(navigate, tripName.id)}>
-                  
-                    <b>{tripName.name}</b>
-                    {/* <button onClick={() => navigate(`admin/trips/${trips.id}`)}>Ver Detalhes</button> */}
-                    {/* <button onClick={() => deleteTrip(tripName.id) }> Delete</button> */}
-                <Button onClick={() => deleteTrip(tripName.id)}> Delete</Button>
-                </ul>
-                </Spacing>
-                </Card>
-            </div>
+
+            <Card>
+                <Posicionar>
+
+
+                    <ul key={tripName.id} onClick={() => goToTripDetailPage(navigate, tripName.id)}>
+
+
+                        <b>{tripName.name}</b>
+
+
+
+
+                        {/* <button onClick={() => navigate(`admin/trips/${trips.id}`)}>Ver Detalhes</button> */}
+                        {/* <button onClick={() => deleteTrip(tripName.id) }> Delete</button> */}
+                        
+
+                        <Button onClick={() => deleteTrip(tripName.id)}> Delete</Button>
+                        
+
+                    </ul>
+                </Posicionar>
+
+
+
+            </Card>
+
 
         )
     })
 
     return (
         <Tela>
-            <h1>Painel Administrativo</h1>
-                {tripsName}
-                
-            
+            <Tittle>
+                <h1>Painel Administrativo</h1>
+            </Tittle>
+            {tripsName}
+
+
             <div>
                 <Button onClick={() => goToHomePage(navigate)}>Voltar</Button>
                 <ButtonViagem onClick={() => goToCreateTripPage(navigate)}>Criar Viagem</ButtonViagem>

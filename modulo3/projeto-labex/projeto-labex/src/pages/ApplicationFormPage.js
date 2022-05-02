@@ -17,7 +17,7 @@ justify-content: space-between;
 background-color: #F0F8FF;
 `
 
-const Formulario = styled.div`
+const Formulario = styled.form`
 align-self: center;
 justify-content: center;
 `
@@ -131,19 +131,23 @@ export const ApplicationFormPage = () => {
     })
 
     return (
+        <Tela>
         <div>
+            <Posicionar>
             <h1>Inscreva-se para uma viagem</h1>
-            <form onSubmit={applyToTrip}>
+            <br />
+            <Formulario onSubmit={applyToTrip}>
                 <div>
-                <select onChange={setId}>
+                <Select onChange={setId}>
                     <option>
                         Escolha uma viagem
                     </option>
                     {tripNameAndID}
-                </select>
+                </Select>
                 </div>
+                <br />
                 <div>
-                <input
+                <Input
                     placeholder="Nome"
                     name="name"
                     value={form.name}
@@ -153,8 +157,9 @@ export const ApplicationFormPage = () => {
                     title={"O nome deve ter no mínimo 3 caracteres"}
                 />
                 </div>
+                <br />
                 <div>
-                <input
+                <Input
                     placeholder="Idade"
                     name="age"
                     type="number"
@@ -164,8 +169,9 @@ export const ApplicationFormPage = () => {
                     min={"18"}
                 />
                 </div>
+                <br />
                 <div>
-                <input
+                <Input
                     placeholder="Texto de candidatura"
                     name="applicationText"
                     required
@@ -176,8 +182,9 @@ export const ApplicationFormPage = () => {
                     title={"O texto deve ter no mínimo 30 caracteres"}
                 />
                 </div>
+                <br />
                 <div>
-                <input
+                <Input
                     placeholder="Profissão"
                     name="profession"
                     value={form.profession}
@@ -187,21 +194,25 @@ export const ApplicationFormPage = () => {
                     title={"O texto deve ter no mínimo 10 caracteres"}
                 />
                 </div>
+                <br />
                 <div>
-                <select name="country"
+                <Select name="country"
                     value={form.country}
                     onChange={onChange}
                     required>
                     {countrysJason}
 
-                </select>
+                </Select>
                 </div>
+                <br/>
                 
-                <button>Cadastrar</button>
+                <Button>Cadastrar</Button>
                 
-            </form>
-            <button onClick={() => goBack(navigate)}>Voltar</button>
+            </Formulario>
+            <Button onClick={() => goBack(navigate)}>Voltar</Button>
+            </Posicionar>
 
         </div>
+        </Tela>
     )
 }

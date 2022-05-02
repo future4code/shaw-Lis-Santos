@@ -116,6 +116,7 @@ export const CreateTripPage = () => {
             <Tela>
                 <Posicionar>
                     <h1>Criar Viagem</h1>
+                    <br />
 
                     <Formulario onSubmit={createTrip}>
                         <div>
@@ -129,6 +130,7 @@ export const CreateTripPage = () => {
                                 required
                             />
                         </div>
+                        <br />
                         <div>
                             <Select
                                 name="planet"
@@ -137,6 +139,7 @@ export const CreateTripPage = () => {
                                 {planetsSolarSystem}
                             </Select >
                         </div>
+                        <br/>
                         <div>
                             <Input
                                 name="date"
@@ -148,6 +151,7 @@ export const CreateTripPage = () => {
                                 required
                             />
                         </div>
+                        <br />
                         <div>
                             <Input
                                 placeholder="Descrição"
@@ -159,6 +163,7 @@ export const CreateTripPage = () => {
                                 required
                             />
                         </div>
+                        <br />
                         <div>
                             <Input
                                 placeholder="Duração em dias"
@@ -170,6 +175,7 @@ export const CreateTripPage = () => {
                                 required
                             />
                         </div>
+                        <br />
                         <Button>Criar</Button>
                     </Formulario>
                     <Button onClick={() => goBack(navigate)}>Voltar</Button>

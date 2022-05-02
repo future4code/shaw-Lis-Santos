@@ -15,32 +15,38 @@ flex-direction: column;
  padding: 15px; 
  margin: 10px;
  width: 17vw;
- height: 35vh;
+ height: 33vh;
 justify-content: space-between; 
 text-align: center;
  flex-wrap: wrap;
  border-radius: 10%;
  `
 
-const Card2 = styled.div`
-display: flex;
-flex-direction: column;
- font-family: "Indie Flower";
- text-align: center;
- border: 1px solid blue;
- padding: 15px; 
- margin: 10px;
- width: 6vw;
- height: 10vh;
- flex-wrap: wrap;
- border-radius: 10%;
+ const Tittle = styled.div `
+ h1{
+     display: flex;
+     justify-content: center;
+ }
+
  `
- const Button = styled.button`
+ const Subtitle = styled.div `
+ h2{
+     display: flex;
+     justify-content: center;
+ }
+
+ `
+
+ const Bloco = styled.div `
+padding: 5px;
+
+ `
+
+const Button = styled.button`
  background: none;
  border: 0.5px solid blue;
- justify-content: center;
- text-align: center;
- align-self: center;
+ justify-content: space-between;
+ align-self: space-between;
  width: 3vw;
  height: 2.5vh;
  &:hover{
@@ -48,6 +54,12 @@ flex-direction: column;
      background-color: #F0F8FF;
  }
  `
+const Posicionar = styled.div`
+display: flex;
+justify-content: space-evenly;
+text-align: center;
+align-self: center;
+`
 
 export const TripDetailsPage = () => {
     const [tripDetails, setTripDetails] = useState({})
@@ -90,71 +102,84 @@ export const TripDetailsPage = () => {
                 <p> <b> Profissão: </b>{candidate.profession}</p>
                 <p> <b> País: </b>{candidate.country}</p>
                 <p> <b> Texto de Candidatura </b>{candidate.applicationText}</p>
-                <button onClick={() => decideCandidates(candidate.id, true)}>Aprovar</button>
-                <button onClick={() => decideCandidates(candidate.id, false)}>Reprovar</button>
-            </div >
+                <br />
+
+                <Posicionar>
+                <div>
+                <Button onClick={() => decideCandidates(candidate.id, true)}>Aprovar</Button>
+                </div>
+                <div>
+                <Button onClick={() => decideCandidates(candidate.id, false)}>Reprovar</Button>
+                </div>
+                </ Posicionar>
+                </div>
             </Card>
         )
     })
 
-const listApproved = tripDetails.approved && tripDetails.approved.map((person) => {
-    return (
-        <Card2>
-        <div>
-            <p>
-                {person.name}
-            </p>
-        </div>
-        </Card2>
-    )
-})
+    const listApproved = tripDetails.approved && tripDetails.approved.map((person) => {
+        return (
 
-console.log(tripDetails)
-useEffect(() => {
-    getTripsDetails()
-}, [])
-const decideCandidates = (candidateId, boolean) => {
-    const body = { approve: boolean };
-    const token = localStorage.getItem("token");
+            <div>
+                <li>
+                    {person.name}
+                </li>
+            </div>
 
-    axios
-        .put(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/lis-ribeiro-shaw/trips/${params.id}/candidates/${candidateId}/decide`,
-            body,
-            {
-                headers: {
-                    auth: token,
-                },
-            }
         )
-        .then((res) => {
-            alert("Transação aceita!");
-        })
-        .catch((err) => {
-            console.log(err.res);
-        });
-};
+    })
 
-useEffect(() => {
-    getTripsDetails()
-}, [])
+    console.log(tripDetails)
+    useEffect(() => {
+        getTripsDetails()
+    }, [])
+    const decideCandidates = (candidateId, boolean) => {
+        const body = { approve: boolean };
+        const token = localStorage.getItem("token");
 
-return (
-    <div>
-        <h2> {tripDetails.name}</h2>
-        <p> <b> Nome: </b>{tripDetails.name} </p>
-        <p> <b> Descrição:  </b> {tripDetails.description} </p>
-        <p> <b> Planeta: </b>{tripDetails.planet} </p>
-        <p> <b> Duração:  </b>{tripDetails.durationInDays} </p>
-        <p> <b> Data:</b> {tripDetails.date} </p>
+        axios
+            .put(
+                `https://us-central1-labenu-apis.cloudfunctions.net/labeX/lis-ribeiro-shaw/trips/${params.id}/candidates/${candidateId}/decide`,
+                body,
+                {
+                    headers: {
+                        auth: token,
+                    },
+                }
+            )
+            .then((res) => {
+                alert("Transação aceita!");
+            })
+            .catch((err) => {
+                console.log(err.res);
+            });
+    };
 
+    useEffect(() => {
+        getTripsDetails()
+    }, [])
+
+    return (
         <div>
-            <h3>Candidatos pendentes</h3>
-            {listCandidates}
-            <h3>Candidatos Aprovados</h3>
-            {listApproved}
-        </div>
-        <Button onClick={() => goToAdminHomePage(navigate)}>Voltar</Button>
-    </div>
-)
+        <Tittle>
+            <h1> {tripDetails.name}</h1> 
+            </Tittle>
+            <Bloco>
+            <p> <b> Nome: </b>{tripDetails.name} </p>
+            <p> <b> Descrição:  </b> {tripDetails.description} </p>
+            <p> <b> Planeta: </b>{tripDetails.planet} </p>
+            <p> <b> Duração:  </b>{tripDetails.durationInDays} </p>
+            <p> <b> Data:</b> {tripDetails.date} </p>
+            </Bloco>
+
+            <Subtitle>
+                <h2>Candidatos pendentes</h2>
+                {listCandidates}
+                <br />
+                <h2>Candidatos Aprovados </h2>
+                {listApproved}
+            </Subtitle>
+            <Button onClick={() => goToAdminHomePage(navigate)}>Voltar</Button>
+            </div>
+    )
 }

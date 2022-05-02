@@ -11,30 +11,30 @@ const HomeDiv = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    text-align: center;
     background-color: #97c2fd;
-    h2 {
-        padding-top: 5vh;
-        color: #494949;
-        font-size: 2.1rem;
 
-    }
     img{
         width: 50vw;
         height: 70vh;
     
     }
     `
+
+
+
 const Button = styled.button`
 background: none;
-border: 0.5px solid blue;
+border: 1px solid #fda626;
 justify-content: center;
 text-align: center;
 align-self: center;
 width: 7vw;
 height: 5vh;
+background-color: #fff;
 &:hover{
     cursor: pointer;
-    background-color: #F0F8FF;
+    background-color: #fda626;
 }
 `
 
@@ -45,6 +45,7 @@ export const HomePage = () => {
         <HomeDiv>
             <img src={Astronauta} />
             <div>
+                <h2>Labex</h2>
                 <Button onClick={() => goToListTripsPage(navigate)}>Lista de viagens</Button>
                 <Button onClick={() => goToLogin(navigate)}>Área de admin</Button>
             </div>
@@ -53,7 +54,16 @@ export const HomePage = () => {
 }
 
 
-
+{/* <Posicionar>
+<div>
+<Button onClick={() => decideCandidates(candidate.id, true)}>Aprovar</Button>
+</div>
+<div>
+<Button onClick={() => decideCandidates(candidate.id, false)}>Reprovar</Button>
+</div>
+</ Posicionar>
+</div>
+</Card> */}
 
 // const Tela = styled.div`
 // display: flex;
@@ -91,3 +101,4 @@ export const HomePage = () => {
 //         </Tela>
 //     )
 // }
+
