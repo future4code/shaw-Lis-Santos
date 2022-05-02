@@ -7,6 +7,16 @@ import { goToAdminHomePage } from "../routes/coordinator";
 import { base_url } from "../constants/constants";
 
 
+const Tela = styled.div`
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+width: 100vw;
+height: 100vh;
+ /* justify-content: space-between; */
+background-color: #F0F8FF;
+`
+
 const Card = styled.div`
 display: flex;
 flex-direction: column;
@@ -22,14 +32,14 @@ text-align: center;
  border-radius: 10%;
  `
 
- const Tittle = styled.div `
+const Tittle = styled.div`
  h1{
      display: flex;
      justify-content: center;
  }
 
  `
- const Subtitle = styled.div `
+const Subtitle = styled.div`
  h2{
      display: flex;
      justify-content: center;
@@ -37,8 +47,10 @@ text-align: center;
 
  `
 
- const Bloco = styled.div `
-padding: 5px;
+const Bloco = styled.div`
+padding-left: 5px;
+padding-top: 50px;
+
 
  `
 
@@ -97,21 +109,21 @@ export const TripDetailsPage = () => {
         return (
             <Card>
                 <div key={candidate.id} >
-                <p><b> Nome: </b>{candidate.name}</p>
-                <p><b> Idade: </b> {candidate.age}</p>
-                <p> <b> Profissão: </b>{candidate.profession}</p>
-                <p> <b> País: </b>{candidate.country}</p>
-                <p> <b> Texto de Candidatura </b>{candidate.applicationText}</p>
-                <br />
+                    <p><b> Nome: </b>{candidate.name}</p>
+                    <p><b> Idade: </b> {candidate.age}</p>
+                    <p> <b> Profissão: </b>{candidate.profession}</p>
+                    <p> <b> País: </b>{candidate.country}</p>
+                    <p> <b> Texto de Candidatura </b>{candidate.applicationText}</p>
+                    <br />
 
-                <Posicionar>
-                <div>
-                <Button onClick={() => decideCandidates(candidate.id, true)}>Aprovar</Button>
-                </div>
-                <div>
-                <Button onClick={() => decideCandidates(candidate.id, false)}>Reprovar</Button>
-                </div>
-                </ Posicionar>
+                    <Posicionar>
+                        <div>
+                            <Button onClick={() => decideCandidates(candidate.id, true)}>Aprovar</Button>
+                        </div>
+                        <div>
+                            <Button onClick={() => decideCandidates(candidate.id, false)}>Reprovar</Button>
+                        </div>
+                    </ Posicionar>
                 </div>
             </Card>
         )
@@ -160,16 +172,17 @@ export const TripDetailsPage = () => {
     }, [])
 
     return (
-        <div>
-        <Tittle>
-            <h1> {tripDetails.name}</h1> 
+
+        <Tela>
+            <Tittle>
+                <h1> {tripDetails.name}</h1>
             </Tittle>
             <Bloco>
-            <p> <b> Nome: </b>{tripDetails.name} </p>
-            <p> <b> Descrição:  </b> {tripDetails.description} </p>
-            <p> <b> Planeta: </b>{tripDetails.planet} </p>
-            <p> <b> Duração:  </b>{tripDetails.durationInDays} </p>
-            <p> <b> Data:</b> {tripDetails.date} </p>
+                <p> <b> Nome: </b>{tripDetails.name} </p>
+                <p> <b> Descrição:  </b> {tripDetails.description} </p>
+                <p> <b> Planeta: </b>{tripDetails.planet} </p>
+                <p> <b> Duração:  </b>{tripDetails.durationInDays} </p>
+                <p> <b> Data:</b> {tripDetails.date} </p>
             </Bloco>
 
             <Subtitle>
@@ -180,6 +193,9 @@ export const TripDetailsPage = () => {
                 {listApproved}
             </Subtitle>
             <Button onClick={() => goToAdminHomePage(navigate)}>Voltar</Button>
-            </div>
+        </Tela>
+
+
+
     )
 }
