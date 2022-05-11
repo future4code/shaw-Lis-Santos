@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import { login } from '../../services/user'
 import { TextField } from "@material-ui/core";
 import { InputsContainer, ScreenContainer, SignUpButton } from "./styled";
 import useForm from '../../hooks/useForm'
 import { Button } from "@material-ui/core";
 import { useNavigate } from "react-router";
 import { goToSignUp } from '../../routes/coordinator'
+import useUnprotectedPage from "../../hooks/useUnprotectedPage";
+import { GlobalContext } from "../../global/GlobalContext";
 
 const LoginPage = () => {
+    useUnprotectedPage()
     const navigate = useNavigate()
     const [form, onChange, clear] = useForm({ email: "", password: "" })
-    console.log(form)
+    const { setRightButtonText } = useContext(GlobalContext)
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = e => {
         e.preventDefault()
+        login(form, clear, navigate, setRightButtonText)
     }
+
     return (
         <ScreenContainer>
             <h1>Login</h1>
