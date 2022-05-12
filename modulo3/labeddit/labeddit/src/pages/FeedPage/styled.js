@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import Fab from '@material-ui/core/Fab'
 
-export const PostCard = styled.div `
+export const PostCard = styled.div`
 border: 2px solid #a64fa4;
 margin: 30px;
 flex-wrap: wrap;
-width: 80vw;
-height: 12vh;
+min-width: 80vw;
+min-height: 14vh;
 padding-left: 5px
 `
 
@@ -17,7 +16,7 @@ export const PostListContainer = styled.div`
   margin: 30px;
 `
 
-export const UserName = styled.p `
+export const UserName = styled.p`
 font-size: 12px;
 color: #a0a0a0;
 `

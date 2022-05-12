@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { useNavigate } from "react-router";
@@ -7,16 +7,18 @@ import useForm from '../../hooks/useForm'
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { signUp } from "../../services/user";
 import { GlobalContext } from "../../global/GlobalContext";
+import { CircularProgress } from "@material-ui/core";
 
 const SingUpPage = () => {
     useUnprotectedPage()
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
     const [form, onChange, clear] = useForm({ username: '', email: '', password: '' })
     const { setRightButtonText } = useContext(GlobalContext)
 
     const onSubmitForm = e => {
         e.preventDefault()
-        signUp(form, clear, navigate, setRightButtonText)
+        signUp(form, clear, navigate, setRightButtonText, setIsLoading)
     }
 
     return (
@@ -63,7 +65,8 @@ const SingUpPage = () => {
                     variant={'contained'}
                     type={'submit'}
                     fullWidth
-                > Fazer Cadastro
+                >
+                    {isLoading ? <CircularProgress color={"inherit"} size={24} /> : <>Fazer Cadastro </>}
                 </Button>
             </form>
         </ScreenContainer >

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { login } from '../../services/user'
 import { TextField } from "@material-ui/core";
 import { InputsContainer, ScreenContainer, SignUpButton } from "./styled";
@@ -8,16 +8,20 @@ import { useNavigate } from "react-router";
 import { goToSignUp } from '../../routes/coordinator'
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { GlobalContext } from "../../global/GlobalContext";
+import { CircularProgress } from "@material-ui/core";
 
 const LoginPage = () => {
     useUnprotectedPage()
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
     const [form, onChange, clear] = useForm({ email: "", password: "" })
     const { setRightButtonText } = useContext(GlobalContext)
 
+    console.log(form)
+
     const onSubmitForm = e => {
         e.preventDefault()
-        login(form, clear, navigate, setRightButtonText)
+        login(form, clear, navigate, setRightButtonText, setIsLoading)
     }
 
     return (
@@ -55,7 +59,7 @@ const LoginPage = () => {
                         variant={"contained"}
                         color={"primary"}
                     >
-                        Fazer Login
+                        {isLoading? <CircularProgress color={"inherit"} size={24} /> : <>Fazer Login </>}
                     </Button>
                 </form>
             </InputsContainer>

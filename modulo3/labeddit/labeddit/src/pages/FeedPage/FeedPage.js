@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import useRequestData from '../../hooks/useRequestData'
 import { BASE_URL } from "../../constants/url";
@@ -7,25 +7,71 @@ import { TextField } from "@material-ui/core";
 import { InputsContainer, ScreenContainer } from "./styled";
 import { Button } from "@material-ui/core";
 import useForm from "../../hooks/useForm";
-import { createPost } from "../../services/post";
+import { createComment, createPost } from "../../services/post";
+import { CircularProgress } from "@material-ui/core";
+import Loading from '../../components/Loading/Loading'
+import axios from "axios";
 
 
 const FeedPage = () => {
     useProtectedPage()
+    const [isLoading, setIsLoading] = useState(false)
     const [form, onChange, clear] = useForm({ title: '', body: '' })
+
     const posts = useRequestData([], `${BASE_URL}/posts`)
 
     const onSubmitForm = e => {
         e.preventDefault()
-        createPost(form, clear)
+        createPost(form, clear, setIsLoading)
     }
 
+    const createPostVote = (id) => {
+        const url = `${BASE_URL}/posts/${id}/votes`
+        const body = {
+            direction: 1
+        }
+        axios.post(url, body, {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const changePostVote = (id) => {
+        const url = `${BASE_URL}/posts/${id}/votes`
+        const body = {
+            direction: -1
+        }
+        axios.put(url, body, {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+            })
+                .then((res) => {
+                    console.log(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    
+
     const postCards = posts.map((post) => {
+        console.log(post)
         return (
             <PostCard key={post.id}>
                 <UserName> Enviado por: {post.username} </UserName>
                 <br />
+                <p>{post.title} </p>
                 <p>{post.body}</p>
+                <button onClick={() => createPostVote(post.id)}>Curtir</button>
+                <button onClick={() => changePostVote(post.id)}>Descurtir</button>
 
             </PostCard>
         )
@@ -44,7 +90,7 @@ const FeedPage = () => {
                             fullWidth
                             margin={"normal"}
                             required
-                            placeholder="Título"
+                            label={"Título"}
                         />
                         <TextField
                             name={"body"}
@@ -62,14 +108,12 @@ const FeedPage = () => {
                             variant={"contained"}
                             color={"primary"}
                         >
-                            Postar
+                            {isLoading ? <CircularProgress color={"inherit"} size={24} /> : <>Postar</>}
                         </Button>
                     </form>
                 </InputsContainer>
             </ScreenContainer>
-            <PostListContainer>
-                {postCards}
-            </PostListContainer>
+            {postCards.length > 0 ? postCards : <Loading />}
         </div>
     )
 }
