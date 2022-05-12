@@ -20,19 +20,3 @@ export const createPost = (form, clear, setIsLoading) => {
             alert(err.res)
         })
 }
-
-
-export const createComment = (form, onChange, clear, id) => {
-    const url = `${BASE_URL}/posts/${id}/comments`
-    axios.post(url, form, {
-        headers: {
-            Authorization: localStorage.getItem('token')
-        }
-    })
-        .then((res) => {
-            console.log(res.data)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-}

@@ -2,23 +2,29 @@ import React, { useState } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import useRequestData from '../../hooks/useRequestData'
 import { BASE_URL } from "../../constants/url";
-import { PostListContainer, PostCard, UserName } from "./styled";
+import { PostCard, UserName } from "./styled";
 import { TextField } from "@material-ui/core";
 import { InputsContainer, ScreenContainer } from "./styled";
 import { Button } from "@material-ui/core";
 import useForm from "../../hooks/useForm";
-import { createComment, createPost } from "../../services/post";
+import { createPost } from "../../services/post";
 import { CircularProgress } from "@material-ui/core";
 import Loading from '../../components/Loading/Loading'
 import axios from "axios";
+import { useNavigate } from "react-router";
+import { goToPost } from "../../routes/coordinator";
 
 
 const FeedPage = () => {
     useProtectedPage()
+    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [form, onChange, clear] = useForm({ title: '', body: '' })
+    const [posts, getPosts] = useRequestData([], `${BASE_URL}/posts`)
 
-    const posts = useRequestData([], `${BASE_URL}/posts`)
+    const onClickCard = (id) => {
+        goToPost(navigate, id)
+    }
 
     const onSubmitForm = e => {
         e.preventDefault()
@@ -37,6 +43,7 @@ const FeedPage = () => {
         })
             .then((res) => {
                 console.log(res.data)
+                getPosts()
             })
             .catch((err) => {
                 console.log(err)
@@ -52,31 +59,36 @@ const FeedPage = () => {
             headers: {
                 Authorization: localStorage.getItem('token')
             }
+        })
+            .then((res) => {
+                console.log(res.data)
+                getPosts()
             })
-                .then((res) => {
-                    console.log(res.data)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        }
-    
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
 
     const postCards = posts.map((post) => {
         console.log(post)
         return (
-            <PostCard key={post.id}>
-                <UserName> Enviado por: {post.username} </UserName>
-                <br />
-                <p>{post.title} </p>
-                <p>{post.body}</p>
-                <button onClick={() => createPostVote(post.id)}>Curtir</button>
-                <button onClick={() => changePostVote(post.id)}>Descurtir</button>
+            <PostCard>
+                <div key={post.id} onClick={() => onClickCard(post.id)}>
+                    <UserName> Enviado por: {post.username} </UserName>
+                    <br />
+                    <p>{post.title} </p>
+                    <p>{post.body}</p>
+                </div>
+                <div>
+                    <button onClick={() => createPostVote(post.id)}>Curtir </button>
+                    {post.voteSum}
+                    <button onClick={() => changePostVote(post.id)}>Descurtir </button>
+                </div>
 
-            </PostCard>
+            </ PostCard>
         )
     })
-
     return (
         <div>
             <ScreenContainer>

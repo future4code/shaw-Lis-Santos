@@ -15,7 +15,7 @@ export const Router = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/cadastro" element={<SingUpPage />} />
                 <Route index element={<FeedPage />} />
-                <Route path="/adicionar-post" element={<PostPage />} />
+                <Route path="/detalhe/:id" element={<PostPage />} />
                 <Route path="*" element={<ErrorPage />} />
                
             </Routes>
