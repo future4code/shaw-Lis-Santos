@@ -1,7 +1,7 @@
 import axios from "axios"
 import { BASE_URL } from '../constants/url'
 
-export const createPost = (form, clear, setIsLoading) => {
+export const createPost = (form, clear, setIsLoading, getPosts) => {
     setIsLoading(true)
     const url = `${BASE_URL}/posts`
     axios.post(url, form, {
@@ -13,6 +13,7 @@ export const createPost = (form, clear, setIsLoading) => {
             console.log(res)
             alert(res.data)
             clear()
+            getPosts()
             setIsLoading(false)
         })
         .catch((err) => {

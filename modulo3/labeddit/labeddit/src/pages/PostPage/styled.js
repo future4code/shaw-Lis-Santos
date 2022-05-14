@@ -43,3 +43,14 @@ max-width: 450px;
 background: none;
 border: none;
 `
+
+export const ReactButton = styled.button`
+border: transparent;
+background: none;
+`
+
+export const Bloco = styled.div`
+display: flex;
+justify-content: space-evenly;
+margin-top: 2vh;
+`

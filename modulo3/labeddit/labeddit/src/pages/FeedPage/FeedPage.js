@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import useRequestData from '../../hooks/useRequestData'
 import { BASE_URL } from "../../constants/url";
-import { PostCard, UserName } from "./styled";
 import { TextField } from "@material-ui/core";
-import { InputsContainer, ScreenContainer } from "./styled";
+import { InputsContainer, ScreenContainer, ReactButton, Bloco, PostCard, UserName } from "./styled";
 import { Button } from "@material-ui/core";
 import useForm from "../../hooks/useForm";
 import { createPost } from "../../services/post";
@@ -13,6 +12,10 @@ import Loading from '../../components/Loading/Loading'
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { goToPost } from "../../routes/coordinator";
+import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone';
+import FavoriteBorderTwoToneIcon from '@material-ui/icons/FavoriteBorderTwoTone';
+import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
+import TextsmsTwoToneIcon from '@material-ui/icons/TextsmsTwoTone';
 
 
 const FeedPage = () => {
@@ -28,7 +31,7 @@ const FeedPage = () => {
 
     const onSubmitForm = e => {
         e.preventDefault()
-        createPost(form, clear, setIsLoading)
+        createPost(form, clear, setIsLoading, getPosts)
     }
 
     const createPostVote = (id) => {
@@ -68,23 +71,41 @@ const FeedPage = () => {
                 console.log(err)
             })
     }
+    const deleteCommentVote = (id) => {
+        const url = `${BASE_URL}/posts/${id}/votes`
+        axios
+            .delete(url, {
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                }
+            })
+            .then((res) => {
+                console.log(res.data)
+                getPosts()
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
 
     const postCards = posts.map((post) => {
         console.log(post)
         return (
-            <PostCard>
+            <PostCard >
                 <div key={post.id} onClick={() => onClickCard(post.id)}>
                     <UserName> Enviado por: {post.username} </UserName>
                     <br />
                     <p>{post.title} </p>
                     <p>{post.body}</p>
                 </div>
-                <div>
-                    <button onClick={() => createPostVote(post.id)}>Curtir </button>
+                <Bloco>
+                    <ReactButton onClick={() => createPostVote(post.id)}><FavoriteTwoToneIcon color={"primary"} /> </ReactButton>
                     {post.voteSum}
-                    <button onClick={() => changePostVote(post.id)}>Descurtir </button>
-                </div>
+                    <ReactButton onClick={() => changePostVote(post.id)}><FavoriteBorderTwoToneIcon color={"primary"} /> </ReactButton>
+                    <ReactButton onClick={() => deleteCommentVote(post.id)}><DeleteForeverTwoToneIcon color={"primary"} /></ReactButton>
+                    <ReactButton onClick={() => goToPost(navigate, post.id)}> {post.commentCount}<TextsmsTwoToneIcon color={"primary"} /></ReactButton>
+                </Bloco>
 
             </ PostCard>
         )
