@@ -5,20 +5,22 @@ import useProtectedPage from "../../hooks/useProtectedPage";
 import { useParams } from "react-router";
 import useForm from "../../hooks/useForm";
 import { TextField } from "@material-ui/core";
-import { InputsContainer, ScreenContainer } from "./styled";
+import { InputsContainer, ScreenContainer, PostCard, UserName } from "./styled";
 import { Button } from "@material-ui/core";
 import { CircularProgress } from "@material-ui/core";
 import { BASE_URL } from "../../constants/url";
 import useRequestData from "../../hooks/useRequestData";
+import Loading from "../../components/Loading/Loading";
 
 const PostPage = () => {
     useProtectedPage()
     const params = useParams()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [posts, getPosts] = useRequestData([], `${BASE_URL}/posts`)
     const [form, onChange, clear] = useForm({ body: '' })
     const [post, setPost] = useState({})
+    const [comments, getComments] = useRequestData([], `${BASE_URL}/posts/${params.id}/comments`)
 
     useEffect(() => {
         for (const post of posts) {
@@ -27,7 +29,7 @@ const PostPage = () => {
                 break
             }
         }
-    }, [post])
+    }, [posts])
 
     const onSubmitForm = (e) => {
         e.preventDefault()
@@ -51,6 +53,64 @@ const PostPage = () => {
 
             })
     }
+
+    const createPostVote = (id) => {
+        const url = `${BASE_URL}/posts/${id}/votes`
+        const body = {
+            direction: 1
+        }
+        axios.post(url, body, {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+            .then((res) => {
+                console.log(res.data)
+                // getPosts()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const changePostVote = (id) => {
+        const url = `${BASE_URL}/posts/${id}/votes`
+        const body = {
+            direction: -1
+        }
+        axios.put(url, body, {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+            .then((res) => {
+                console.log(res.data)
+                getPosts()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const commentsList = comments?.map((comment) => {
+        return (
+            <PostCard key={comment.id}>
+                <div>
+                    <div>
+                        <UserName>Enviado por: {comment.username}</UserName>
+                        <br />
+                        <div>{comment.body}</div>
+                    <button onClick={() => createPostVote(comment.id)}>Curtir </button>
+                    {comment.voteSum}
+                    <button onClick={() => changePostVote(comment.id)}>Descurtir </button>
+                        <div>{comment.voteSum ? comment.voteSum : 0}</div>
+
+                    </div>
+                    <br />
+                </div>
+            </PostCard>
+        )
+    })
 
     return (
         <div>
@@ -78,6 +138,7 @@ const PostPage = () => {
                     </form>
                 </InputsContainer>
             </ScreenContainer>
+            {commentsList.length > 0 ? commentsList : <Loading />}
 
         </div>
 
