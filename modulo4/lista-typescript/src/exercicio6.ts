@@ -10,7 +10,7 @@ const clients: dataClients[] = [
     { cliente: "Pedro", saldoTotal: 10000, debitos: [5140, 6100, 100, 2000] },
     { cliente: "Luciano", saldoTotal: 100, debitos: [100, 200, 1700] },
     { cliente: "Artur", saldoTotal: 1800, debitos: [200, 300] },
-    { cliente: "Soter", saldoTotal: 1200, debitos: [] }
+    { cliente: "Soter", saldoTotal: 1200, debitos: [] } 
 ]
 
 const reduce = clients.map((client) => {

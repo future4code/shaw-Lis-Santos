@@ -10,7 +10,7 @@ const issueRG = (birthData: string, issueDate: string): boolean => {
     const condition1: boolean = currentYear - age <= 20 && currentYear - checkWallet >= 5
     const condition2: boolean = age < 20 && age <= 50 && currentYear - checkWallet >= 10
     const condition3: boolean = age > 50 && currentYear - checkWallet >= 15
-    return (condition1 || condition2 || condition3)
+    return (condition1 || condition2 || condition3) 
 
 }
 
