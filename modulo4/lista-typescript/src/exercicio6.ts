@@ -28,11 +28,10 @@ console.table(balance)
 
 function totalBalance(clients: dataClients[]): object {
     let result = balance.map(function (element, index) {
-        return ((element - reduce[index]) < 0)? ((element - reduce[index])) : ""
+        return ((element - reduce[index]) < 0) ? ((element - reduce[index])) : ""
     })
-    return result
+    return result.slice(2, 4)
 }
-
 
 
 console.log(totalBalance(clients))
