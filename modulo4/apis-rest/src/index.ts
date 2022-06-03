@@ -82,9 +82,6 @@ app.get('/users/:type', (req: Request, res: Response) => {
     let codeError: number = 400
     try {
         const type = req.params.type
-        // const findType = users.filter((user) => {
-        //     user.type === type
-        // })
 
         let filterType = users.filter((user) => {
             if (user.type === type) {
