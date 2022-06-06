@@ -103,12 +103,12 @@ app.post("/users", (req: Request, res: Response) => {
     }
 })
 
-// app.get("/users", (req: Request, res: Response) => {
-//     const allUsers = users.map((user) => {
-//         return user
-//     })
-//     res.status(200).send(allUsers)
-// })
+app.get("/users", (req: Request, res: Response) => {
+    const allUsers = users.map((user) => {
+        return user
+    })
+    res.status(200).send(allUsers)
+})
 
 app.get("/users", (req: Request, res: Response) => {
     let codeError = 400
@@ -143,6 +143,40 @@ app.put("/users", (req: Request, res: Response) => {
         }
     })
     res.status(200).send(addBalance)
+})
+
+
+app.post("/users", (req: Request, res: Response) => {
+
+    const user = users.find((user) => {
+        if (user.CPF === req.body.cpf) {
+            return user
+        }
+    })
+    console.log(user)
+
+
+    if (user) {
+        const transaction = user.transactions.find((transaction) => {
+            if (transaction.value === req.body.transactions.value && transaction.date === req.body.transactions.date && transaction.description === req.body.transactions.description) {
+                return transaction
+            }
+        })
+        console.log(transaction)
+
+        if (transaction) {
+            user.balance = user.balance - transaction.value
+        }
+        // if (!transaction?.date) {
+        //     return req.body.transaction.date = "Hoje"
+        // }
+    }
+    res.send(user)
+
+})
+
+app.post("/users", (req: Request, res: Response) => {
+
 })
 
 app.listen(3003, () => {
