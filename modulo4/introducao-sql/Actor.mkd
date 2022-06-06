@@ -1,0 +1,158 @@
+## 1
+
+CREATE TABLE Actor (
+    id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR (255) NOT NULL,
+    salary FLOAT NOT NULL,
+    birth_date DATE NOT NULL,
+    gender VARCHAR(6) NOT NULL
+);
+
+## 1.a
+-- CREATE TABLE: Cria uma tabela; VARCHAR: String de no máximo n caracters; FLOAT: Número não inteiro; DATE: Representa uma data. 
+
+## 1.b 
+SHOW DATABASES: retorna todos os bancos de dados do sistema.
+SHOW TABLES: Mostra todas as tabelas. 
+
+## 1.c
+DESCRIBE Actor;
+-- Usado para conferir a estrutura de uma tabela 
+
+## 2
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "001", 
+  "Tony Ramos",
+  400000,
+  "1948-08-25", 
+  "male"
+);
+
+## 2.a
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+"002",
+"Glória Pires",
+1200000,
+"1963-08-23",
+"female"
+);
+
+SELECT * FROM Actor;
+
+## 2.b
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+"002",
+"Alanis Guillen",
+10000,
+"1998-05-20",
+"female"
+);
+
+--  Código de erro: Duplicado entrada '002' para chave 'PRIMARY'. O id é considerado uma chave única, sendo assim, não pode ser repetido.
+
+## 2.c
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "003", 
+  "Fernanda Montenegro",
+  300000,
+  "1929-10-19", 
+  "female"
+);
+
+-- Código de erro: A contagem de colunas não contagem de valor de correspondência na linha. Faltou setar todos os parâmetros para só depois fazer a correspondência chave-valor.
+
+## 2.d
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "004",
+  "Antônio Fagundes",
+  400000,
+  "1949-04-18", 
+  "male"
+);
+
+-- Código do erro: O campo 'name' não possui um valor padrão. O name está com a condição de que não pode ser nulo, então, deve obrigatoriamente ser passado. Como na situação em questão se omitiu este campo, ele entendeu que salary corresponde ao name.
+
+## 2.e 
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "005", 
+  "Juliana Paes",
+  719333.33,
+  "1979-03-26", 
+  "female"
+);
+
+-- Código do erro: Valor de data incorreto : '1950' para a coluna 'birth_date' na linha 1. A data não está entre aspas
+
+## 2.f
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "006", 
+  "Rodrigo Lombardi",
+  250000,
+  "1976-09-15", 
+  "male"
+);
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "007", 
+  "Camila Queiroz",
+  350000,
+  "1993-06-27", 
+  "female"
+);
+## 3
+## 3.a
+SELECT *
+ from Actor 
+ WHERE gender = "female";
+ 
+ ## 3.b
+ SELECT salary 
+ from Actor
+ WHERE name = "Tony Ramos";
+ 
+ ## 3.c
+ SELECT *
+ from Actor 
+ WHERE gender = "invalid";
+ 
+ -- Retornou uma tabela vazia pois não possui nenhum ator que tenha o gênero inválido.
+ 
+ ## 3.d
+ SELECT id, name, salary
+ from Actor 
+ WHERE salary <= 500000;
+ 
+ ## 3.e
+ SELECT id, nome from Actor WHERE id = "002";
+-- Error Code: Coluna desconhecida 'nome ' na 'lista de campos'. O erro aconteceu pois o campo correto seria 'name' e não 'nome'.
+
+## 4 
+
+SELECT * 
+FROM Actor
+WHERE (name LIKE "A%" OR name LIKE "J%") AND salary > 300000;
+ ## 4.a
+ -- Selecione todas as informações presentes na tabela Actor onde o nome comece com A ou J e o salário seja maior do que 300000.
+ 
+ ## 4.b
+ SELECT * FROM Actor
+WHERE name NOT LIKE "A%" AND salary > 350000;
+
+## 4.c 
+SELECT * 
+from Actor 
+WHERE (name LIKE "%G%" OR name LIKE "%g%");
+
+## 4.d 
+SELECT *
+from Actor
+WHERE (name LIKE "%a%" OR name LIKE "%A%" OR name LIKE "%g%" OR name LIKE "%G%" AND  salary BETWEEN 350000 AND 900000);
