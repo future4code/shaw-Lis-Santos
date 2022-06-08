@@ -1,7 +1,6 @@
-USE `shaw-21815093-santos`;
 
 ## 1.a) 
-ALTER TABLE Actor DROP COLUMN salary Alterar a tabela excluindo a coluna de salário.
+ALTER TABLE Actor DROP COLUMN salary: Alterar a tabela excluindo a coluna de salário.
 
 ## 1.b)
  ALTER TABLE Actor CHANGE gender sex VARCHAR(6): Alterar o campo 'gender' para 'sex' e o tipo para VARCHAR(6) (string que suporta até 6 caracteres).
