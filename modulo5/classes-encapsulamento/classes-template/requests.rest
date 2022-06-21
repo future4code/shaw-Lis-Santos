@@ -1,0 +1,12 @@
+GET  http://localhost:3003/accounts
+
+###
+
+POST  http://localhost:3003/account
+Content-Type: application/json
+
+{
+    "cpf": "189.003.456.71",
+    "name": "Maria Chica",
+    "age": 28
+}
