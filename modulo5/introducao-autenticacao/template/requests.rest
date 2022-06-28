@@ -4,10 +4,10 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "name": "Lis", 
-   "nickname": "Lis Ribeiro", 
-   "email": "lis@gmail.com" ,
-   "password": "hotmail11"
+   "name": "Júlia", 
+   "nickname": "Juju", 
+   "email": "ju@gmail.com" ,
+   "password": "hellobye"
 }
 
 ###
@@ -15,11 +15,11 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "lis@gmail.com",
-   "password": "hotmail11"
+   "email": "ju@gmail.com",
+   "password": "hellobye"
 }
 
 ### 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YTJjNzQyLTFlZDAtNDhlNS1hMTM1LTg2NzA5MTMxZWE4YyIsImlhdCI6MTY1NjM2Mjg2NywiZXhwIjoxNjU2MzY0NjY3fQ.fElaUP54Mlg59WteHcIgrHEwUY63Bdy32syiyOkxx4k
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkYmYxMzllLWQ0NDYtNDk5ZS04ZTU3LTEzODY1ZDUzMjEwZCIsImlhdCI6MTY1NjQ0ODY3OSwiZXhwIjoxNjU2NDUyMjc5fQ.PqeHX6-mUeo1WLD1A_oSn6ItZiUJDj4JkGh60GfvOmo
 GET http://localhost:3003/user/profile
 Authorization: {{token}}
