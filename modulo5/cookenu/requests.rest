@@ -1,0 +1,28 @@
+POST http://localhost:3003/user 
+ Content-Type: application/json
+
+  {
+     "name": "Patrícia", 
+     "email": "pat@gmail.com",
+     "password": "hellobye"
+  }
+
+###
+POST http://localhost:3003/login
+ Content-Type: application/json
+
+  {
+     "email": "pat@gmail.com",
+     "password": "hellobye"
+  }
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMTJmMDE2LTBhMzctNDI0My04NTg2LWYwMDVhOWMwZTZkYyIsImlhdCI6MTY1NjYxNzgwMCwiZXhwIjoxNjU2NjIxNDAwfQ.HYFnfWGVT-rp1qwt8jf6LJ8cU7GtIch8lSKpYrdOPoo
+GET http://localhost:3003/user/profile
+Authorization: {{token}}
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzYjYzMzlmLWFmNWEtNGI0Yi1iZGNjLWM5YmU5OWVmODQzNCIsImlhdCI6MTY1NjYxNjIwOCwiZXhwIjoxNjU2NjE5ODA4fQ.erZfVMcB8601-mYBETRuiuuOLM23BTnMwe8i4O1PjBw
+
+GET http://localhost:3003/user/6b12f016-0a37-4243-8586-f005a9c0e6dc
+Authorization: {{token}}
