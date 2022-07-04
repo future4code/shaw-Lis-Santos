@@ -1,0 +1,26 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name":"Lis",
+    "email":"lis@gmail.com",
+    "password":"11111997",
+    "role": "ADMIN"
+} 
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "lis@gmail.com",
+    "password": "11111997"
+}
+
+###
+GET http://localhost:3003/allUser
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRkMTg4MGNlLWUzOTktNGU5Mi1hYmVlLTM3ZWY1YjJlMmE1YSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njk3MTc1NiwiZXhwIjoxNjU2OTc1MzU2fQ.wXz3ZeHSSVi6mHD84el3LHR5z6fzWngdGek6qXlLB1Y
+DELETE http://localhost:3003/user/0065e3e8-9365-4222-99c3-c60198916ad2
+Authorization: {{token}}
