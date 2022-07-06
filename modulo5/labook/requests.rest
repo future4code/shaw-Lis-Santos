@@ -16,3 +16,19 @@ POST http://localhost:3003/user/login
     "email":"lis@gmail.com",
     "password":"11111997"
  } 
+
+###
+
+POST http://localhost:3003/post
+Content-Type: application/json
+
+{
+   "photo": "http://www.maxmilhas.com.br/blog/wp-content/uploads/2016/08/Texto-08-por-do-sol-na-praia-vermelha-rio-de-janeiro-Livia-Aguiar-3.jpg",
+   "description": "Pôr do sol na praia",
+   "type": "NORMAL",
+   "created_at": "2022/07/05",
+   "author_id": "f73cdb13-e4bc-4c07-9930-241a264e4241"
+}
+
+### 
+GET http://localhost:3003/post/32926d04-01f9-4889-8cec-abd9fd01c6b5
