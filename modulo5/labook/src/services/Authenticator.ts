@@ -2,23 +2,21 @@ import * as jwt from "jsonwebtoken"
 import { authenticationData } from "../types/authData"
 
 export class Authenticator {
-    generateToken = (
-        payload: authenticationData
-    ): string => {
-        return jwt.sign(
-            payload,
+    public generateToken = (input: authenticationData): string => {
+        const token = jwt.sign(
+            input,
             process.env.JWT_KEY as string,
             {
-                expiresIn: "24min"
+                expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
             }
         )
+        return token
     }
-    getTokenData = (
-        token: string
-    ): authenticationData => {
-        return jwt.verify(
-            token,
-            process.env.JWT_JEY as string
-        ) as authenticationData
+
+
+
+    public getTokenData = (token: string): authenticationData => {
+        const data = jwt.verify(token, process.env.JWT_JEY as string)
+        return data as authenticationData
     }
 }

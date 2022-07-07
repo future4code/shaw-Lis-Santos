@@ -1,12 +1,14 @@
 import { Post } from "../model/Post"
+import { PostDataDTO } from "../types/inputsDTO"
 import { BaseDataBase } from "./BaseDataBase"
 
 export default class PostData extends BaseDataBase {
     protected TABLE_NAME = 'labook_posts'
 
-    insert = async (post: Post) => {
+    insert = async (post: PostDataDTO) => {
         try {
-            await BaseDataBase.connection(this.TABLE_NAME).insert(post)
+            const {id, photo, description, type, author_id } = post
+            await BaseDataBase.connection(this.TABLE_NAME).insert({id, photo, description, type, author_id })
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }

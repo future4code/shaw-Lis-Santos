@@ -1,6 +1,5 @@
 import express, {Express} from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
 import {AddressInfo} from 'net'
 
 const app: Express = express()

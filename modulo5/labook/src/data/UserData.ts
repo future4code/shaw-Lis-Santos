@@ -23,7 +23,19 @@ export default class UserData extends BaseDataBase {
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
-        
+
     }
+    // findByEmail = async (email: string): Promise<User> => {
+    //     try {
+    //         const [result]: FindByEmailResponse = await BaseDataBase.connection(this.TABLE_NAME)
+    //             .select("*")
+    //             .where({ email })
+    //         return User.toUserModel(result)
+    //     } catch (error: any) {
+    //         throw new Error(error.sqlMessage || error.message)
+    //     }
+
+    // }
+
 
 }

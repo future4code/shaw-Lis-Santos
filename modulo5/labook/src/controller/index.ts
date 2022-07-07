@@ -5,7 +5,7 @@ import UserController from './UserController'
 const userController = new UserController()
 const postController = new PostController()
 
-app.post("/user/signup", userController.singup)
+app.post("/user/signup", userController.signup)
 app.post("/user/login", userController.login)
 
 app.post("/post", postController.createPost)

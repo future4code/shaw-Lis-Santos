@@ -1,4 +1,4 @@
-import { TYPE } from "../types/singupInputDTO"
+import { TYPE } from "../types/inputsDTO"
 
 export class Post {
     constructor(

@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./build/index.js",
-    "build": "tsc",
-    "migrations": "tsc && node ./build/migrations.js",
+    "start": " clear && tsc && node ./build/index.js",
     "dev": "tsnd src/controller/index.ts"
   },
   "keywords": [],

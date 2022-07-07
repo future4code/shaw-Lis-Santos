@@ -1,4 +1,6 @@
 import { v4 } from "uuid"
 export class IdGenerator {
-    generateId = (): string => v4()
+   public generateId = (): string => {
+       return  v4()
+   }
 }

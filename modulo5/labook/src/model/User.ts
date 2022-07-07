@@ -17,4 +17,8 @@ export class User {
     public async getPassword(): Promise<string> {
         return this.password
     }
+
+static toUserModel(data: any): User {
+    return new User(data.id, data.name, data.email, data.password)
+}
 }

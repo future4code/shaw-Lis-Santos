@@ -3,7 +3,7 @@ import { User } from "../model/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/idGenerator"
-import { LoginInputDTO, SingUpInputDTO } from "../types/singupInputDTO"
+import { LoginInputDTO, SingUpInputDTO } from "../types/inputsDTO"
 
 export default class UserBusiness {
 
@@ -12,11 +12,15 @@ export default class UserBusiness {
     hashManager = new HashManager()
     authenticator = new Authenticator()
 
-    singup = async (input: SingUpInputDTO) => {
+    signup = async (input: SingUpInputDTO) => {
         // validação
         const { name, email, password } = input
         if (!name || !email || !password) {
-            throw new Error("Campos inválidos")
+            throw new Error("Insira corretamente as informações de 'name', 'email' e 'senha'")
+        }
+
+        if (!email.includes("@")) {
+            throw new Error("Verifique se o campo de e-mail foi passado corretamente")
         }
 
         if (password.length < 6) {
@@ -49,8 +53,9 @@ export default class UserBusiness {
     login = async (input: LoginInputDTO) => {
         const { email, password } = input
         if (!email || !password) {
-            throw new Error("Campos inválidos")
+            throw new Error("Insira corretamente as informações de 'email' e 'senha'")
         }
+      
         const userData = new UserData()
         const user = await userData.findByEmail(email)
 

@@ -3,7 +3,7 @@ import { Post } from "../model/Post";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/idGenerator";
-import { PostInputDTO } from "../types/singupInputDTO";
+import { PostDataDTO, PostInputDTO } from "../types/inputsDTO";
 
 export default class PostBusiness {
     postData = new PostData()
@@ -12,19 +12,19 @@ export default class PostBusiness {
     authenticator = new Authenticator()
 
     createPost = async (input: PostInputDTO) => {
-        const { photo, description, type, created_at, author_id } = input
-        if (!photo || !description || !type || !created_at || !author_id) {
+        const { photo, description, type, author_id } = input
+        if (!photo || !description || !type  || !author_id) {
             throw new Error("Campos inválidos")
         }
+
         const id = this.idGenerator.generateId()
-        const post = new Post(
+        const post: PostDataDTO = {
             id, 
             photo, 
             description,
             type,
-            created_at,
             author_id
-        )
+        }
         await this.postData.insert(post)
     }
     getPost(id: string) {
