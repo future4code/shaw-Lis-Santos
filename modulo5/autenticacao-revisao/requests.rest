@@ -1,0 +1,24 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdiMDgxN2ZiLTgzZTUtNDc0Yi04YjU3LTI0MDY4MzlkMzA4NiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjU0MTQyNiwiZXhwIjoxNjU2NTQ1MDI2fQ.VzVF5J1pdNQaWQd2duhXk9kBiIjEHEq_1M0X51wSYSs
+GET http://localhost:3003/users 
+Authorization: {{token}}
+
+###
+
+
+POST http://localhost:3003/user 
+Content-Type: application/json
+
+ {
+    "name": "Katherine", 
+    "email": "katea@gmail.com",
+    "password": "hellobye", 
+    "role": "ADMIN"
+ }
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+ {
+    "email": "juca@gmail.com",
+    "password": "hellobye"
+ }

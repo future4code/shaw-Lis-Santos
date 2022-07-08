@@ -1,0 +1,38 @@
+[
+    {
+        "ordem": 1,
+        "nome": "Mercúrio"
+    },
+    {
+        "ordem": 2,
+        "nome": "Vênus"
+    },
+    {
+        "ordem": 3,
+        "nome": "Terra"
+    },
+    {
+        "ordem": 4,
+        "nome": "Marte"
+    },
+    {
+        "ordem": 5,
+        "nome": "Júpiter"
+    },
+    {
+        "ordem": 6,
+        "nome": "Saturno"
+    },
+    {
+        "ordem": 7,
+        "nome": "Urano"
+    },
+    {
+        "ordem": 8,
+        "nome": "Netuno"
+    },
+    {
+        "ordem": 9,
+        "nome": "Plutão"
+    }
+]

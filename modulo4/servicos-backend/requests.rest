@@ -1,0 +1,5 @@
+GET http://localhost:3003/endereco/36033310
+
+###
+
+POST http://localhost:3003/user/22020002?&numero=10&complemento=Casa
