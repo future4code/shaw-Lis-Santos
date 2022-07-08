@@ -10,15 +10,15 @@ export type LoginInputDTO = {
 }
 
 export enum TYPE {
-    normal = "normal",
-    event = "event"
+    NORMAL = "normal",
+    EVENT = "event"
 }
 
 export type PostInputDTO = {
     photo: string
 	description: string
 	type: TYPE
-    author_id: string
+    author_id: string 
 }
 
 export type PostDataDTO = {

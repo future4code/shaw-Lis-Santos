@@ -1,12 +1,12 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1OGI4NDA4LWI3OGQtNGEzNi1hOTEyLWZkM2NhMjhkOGRkZSIsImlhdCI6MTY1NzE1NjA1NCwiZXhwIjoxNjU3MTU5NjU0fQ.jjqFg_Qz1OgAlT_phTwtucZ3KN7e39LG8qu8H7QVOMU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIwM2M1YzVhLWU4MDQtNDVkMi05MDViLTk1ZWFmMjFiNDE0ZiIsImlhdCI6MTY1NzIwNTcxNSwiZXhwIjoxNjU3MjA5MzE1fQ.rs3FMyK3k8a6ZoV2DCNuaM7bTlnaD6-c5AUGcQYnD10
 
 POST http://localhost:3003/user/signup
  Content-Type: application/json
 
  {
-    "name":"Gaules",
-    "email":"gaul@gmail.com",
-    "password":"02121983"
+    "name":"Mariana",
+    "email":"mari@gmail.com",
+    "password":"07071999"
  } 
 
 ###
@@ -15,8 +15,8 @@ POST http://localhost:3003/user/login
  Content-Type: application/json
 
  {
-    "email":"gaul@gmail.com",
-    "password":"02121983"
+    "email":"mari@gmail.com",
+    "password":"07071999"
  } 
 
 ###
@@ -25,12 +25,12 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-   "photo": "https://culturalizabh.com.br/wp-content/uploads/2021/07/218283699_496391104792100_6873675953089983584_n-1024x683.jpg",
-   "description": "Comida japonesa",
-   "type": "NORMAL",
+   "photo": "https://i.pinimg.com/564x/07/6a/94/076a94289a55c284c3b31c451b12442e.jpg",
+   "description": "flower in the sea",
+   "type": "event",
    "author_id": "f73cdb13-e4bc-4c07-9930-241a264e4241"
 }
 
 ### 
-GET http://localhost:3003/post/32926d04-01f9-4889-8cec-abd9fd01c6b5
+GET http://localhost:3003/post/c2175c79-1554-4077-9eb8-cd6adb96e698
 Authorization: {{token}}

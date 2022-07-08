@@ -1,3 +1,3 @@
-export type authenticationData = {
+export type AuthenticationData = {
     id: string
 }

@@ -1,4 +1,3 @@
-import { Post } from "../model/Post"
 import { PostDataDTO } from "../types/inputsDTO"
 import { BaseDataBase } from "./BaseDataBase"
 
@@ -15,7 +14,7 @@ export default class PostData extends BaseDataBase {
 
     }
     getPostById = async(id: string) => {
-        const result = await BaseDataBase.connection(this.TABLE_NAME)
+        const [result] = await BaseDataBase.connection(this.TABLE_NAME)
         .select("*")
         .where({id})
         return result
