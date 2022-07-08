@@ -1,0 +1,40 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name":"Laura",
+    "email":"laura@gmail.com",
+    "password":"11111997",
+    "role": "ADMIN"
+} 
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "laura@gmail.com",
+    "password": "11111997"
+}
+
+###
+GET http://localhost:3003/allUser
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRkMTg4MGNlLWUzOTktNGU5Mi1hYmVlLTM3ZWY1YjJlMmE1YSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1Njk3MTc1NiwiZXhwIjoxNjU2OTc1MzU2fQ.wXz3ZeHSSVi6mHD84el3LHR5z6fzWngdGek6qXlLB1Y
+DELETE http://localhost:3003/user/7eab661e-709d-4d73-9442-b9a8cf598ea3
+Authorization: {{token}}
+
+###
+POST http://localhost:3003/task
+Content-Type: application/json
+
+{
+    "title": "TRISTE VIDA DO BACK",
+    "description": "ENTENDER POO E ARQUITETURA DE SOFTWARE PARA ONTEM",
+    "deadline": "06/07/2022",
+    "user_id": "347994dc-638f-4b11-b56e-7af5406df3b0"
+}
+
+### 
+GET http://localhost:3003/task/7a6c3d4c-fa98-4182-bbcb-96c556c5a87b
