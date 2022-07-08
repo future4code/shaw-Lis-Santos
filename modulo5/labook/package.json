@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " clear && tsc && node ./build/index.js",
+    "start": "clear && tsc && node ./build/index.js",
     "dev": "tsnd src/controller/index.ts"
   },
   "keywords": [],
