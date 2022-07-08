@@ -1,0 +1,12 @@
+GET http://localhost:3003/students
+
+### 
+
+POST http://localhost:3003/students
+
+Content-Type: application/json
+{
+    "nome": "Matheus Moraes",
+    "turma": "Shaw",
+    "status": "Aprovado"
+}

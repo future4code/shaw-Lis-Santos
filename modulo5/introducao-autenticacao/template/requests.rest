@@ -1,0 +1,25 @@
+# @name signup
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Júlia", 
+   "nickname": "Juju", 
+   "email": "ju@gmail.com" ,
+   "password": "hellobye"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "ju@gmail.com",
+   "password": "hellobye"
+}
+
+### 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBkYmYxMzllLWQ0NDYtNDk5ZS04ZTU3LTEzODY1ZDUzMjEwZCIsImlhdCI6MTY1NjQ0ODY3OSwiZXhwIjoxNjU2NDUyMjc5fQ.PqeHX6-mUeo1WLD1A_oSn6ItZiUJDj4JkGh60GfvOmo
+GET http://localhost:3003/user/profile
+Authorization: {{token}}
