@@ -27,11 +27,11 @@ describe("getUserById", () => {
                     (id: string) => userBusinessMock.getUser(id)
                 )
 
-                const result = getUserById("id_mock")
+                const result = getUserById("id_mock1")
 
-                expect(getUserById).toHaveBeenCalledWith("id_mock")
+                expect(getUserById).toHaveBeenCalledWith("id_mock1")
                 expect(result).toEqual({
-                    id: "id_mock",
+                    id: "id_mock1",
                     name: "mock1",
                     email: "mock1@gmail.com",
                     role: "ADMIN",
