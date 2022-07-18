@@ -1,0 +1,45 @@
+POST http://localhost:3003/user 
+ Content-Type: application/json
+
+  {
+     "name": "Luana", 
+     "email": "lua@gmail.com",
+     "password": "hellobye"
+  }
+
+###
+POST http://localhost:3003/login
+ Content-Type: application/json
+
+  {
+     "email": "lua@gmail.com",
+     "password": "hellobye"
+  }
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjZWRhZjhlLTFlNTItNGM0My04YTFkLWE3OTA1ODFjMTU2ZSIsImlhdCI6MTY1NjY4NTk3MCwiZXhwIjoxNjU2Njg5NTcwfQ.my7bO7aCn2DDnCK9uykEB_Y2V_Qn6AoyHkfmg3mHegk
+GET http://localhost:3003/user/profile
+Authorization: {{token}}
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRkZWYzMjg1LTdhYWMtNGMxMC05NGZiLWRkODEzNzhjZDQwOCIsImlhdCI6MTY1NjY4MjQ5OSwiZXhwIjoxNjU2Njg2MDk5fQ.0MOO1GYzuJmOR1qQt03zcwnYme3uq7ncEWuzddHURlY
+
+GET http://localhost:3003/user/b0e238fb-bc4c-45c5-93b7-2819d11377ba
+Authorization: {{token}}
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIwZTIzOGZiLWJjNGMtNDVjNS05M2I3LTI4MTlkMTEzNzdiYSIsImlhdCI6MTY1NjY4NDEyNywiZXhwIjoxNjU2Njg3NzI3fQ.S0mbuFfX0PSUNoiDlfoCTK0jGiglCBqo4f2c-SNmD28
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+   "title": "Bolo de aipim fit", 
+   "description": "Você vai precisar apenas de 4 ingredientes: 500g de mandioca, 200g de coco ralado sem açúcar, 250ml de leite da sua preferência e 2 colheres de açúcar demerara. Bata o aipim, o leite e o coco ralado no liquidicador. Depois passe para uma vasilha, adicione o açúcar, mexa bem. Asse por 40 minutos a 220 graus."
+  }
+
+###
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIwZTIzOGZiLWJjNGMtNDVjNS05M2I3LTI4MTlkMTEzNzdiYSIsImlhdCI6MTY1NjY4NDEyNywiZXhwIjoxNjU2Njg3NzI3fQ.S0mbuFfX0PSUNoiDlfoCTK0jGiglCBqo4f2c-SNmD28
+GET http://localhost:3003/recipe/63b7e378-719f-4d0e-99c9-171c6f2c0946
+Authorization: {{token}}
