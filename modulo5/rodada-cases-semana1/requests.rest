@@ -1,0 +1,8 @@
+POST http://localhost:3003/buyer
+Content-Type: application/json
+
+{
+    "name": "lis",
+    "email": "lis@gmail.com", 
+    "CPF": "12345678910"
+}
