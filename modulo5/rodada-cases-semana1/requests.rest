@@ -2,7 +2,11 @@ POST http://localhost:3003/buyer
 Content-Type: application/json
 
 {
-    "name": "Júlia",
-    "email": "juju@gmail.com", 
-    "CPF": "12345678912"
+    "name": "Matheus",
+    "email": "matheus@gmail.com", 
+    "CPF": "12343215687"
 }
+
+### 
+POST http://localhost:3003/client
+Content-Type: application/json

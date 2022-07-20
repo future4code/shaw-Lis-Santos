@@ -21,14 +21,13 @@ export class BuyerBusiness {
         if (CPF.length !== 11) {
             throw new Error("O CPF precisa ter 11 dígitos")
         }
-
         const registeredEmail = await this.buyersData.findByEmail(email)
         if (registeredEmail) {
             throw new Error("E-mail já cadastrado")
         }
 
-        const cpfRegistered = await this.buyersData.findByCpf(CPF)
-        if (cpfRegistered) {
+        const registeredCpf = await this.buyersData.findByCpf(CPF)
+        if (registeredCpf) {
             throw new Error("CPF já cadastrado")
         }
 
@@ -40,6 +39,7 @@ export class BuyerBusiness {
             email,
             CPF
         )
+        console.log(newBuyer)
         await this.buyersData.insert(newBuyer)
         return newBuyer
     }
