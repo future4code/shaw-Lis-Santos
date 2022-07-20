@@ -11,4 +11,25 @@ export class BuyersData extends BaseDataBase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
+
+    findByEmail = async (email: string) => {
+        try {
+            const [result] = await BaseDataBase.connection(this.TABLE_NAME)
+                .select("*")
+                .where({ email })
+            return result
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+    findByCpf = async (CPF: string) => {
+        try {
+            const [result] = await BaseDataBase.connection(this.TABLE_NAME)
+                .select("*")
+                .where({ CPF })
+            return result
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
 }

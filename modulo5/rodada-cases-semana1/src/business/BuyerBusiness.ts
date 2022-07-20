@@ -11,14 +11,33 @@ export class BuyerBusiness {
         const { name, email, CPF } = input
 
         if (!name || !email || !CPF) {
-            throw new Error("Preencha todos os campos")
+            throw new Error("Preencha corretamente as informações de 'name', 'email' e 'CPF'")
         }
+
+        if (!email.includes("@")) {
+            throw new Error("Verifique se o campo de e-mail foi passado corretamente")
+        }
+
+        if (CPF.length !== 11) {
+            throw new Error("O CPF precisa ter 11 dígitos")
+        }
+
+        const registeredBuyer = await this.buyersData.findByEmail(email)
+        if (registeredBuyer) {
+            throw new Error("E-mail já cadastrado")
+        }
+
+        const cpfRegistered = await this.buyersData.findByCpf(CPF)
+        if (cpfRegistered) {
+            throw new Error("CPF já cadastrado")
+        }
+
         const id = this.idGenerator.generateId()
 
         const newBuyer = new BuyersModel(
-            id, 
-            name, 
-            email, 
+            id,
+            name,
+            email,
             CPF
         )
         await this.buyersData.insert(newBuyer)
