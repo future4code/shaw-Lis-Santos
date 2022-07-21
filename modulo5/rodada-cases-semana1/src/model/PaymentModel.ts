@@ -10,11 +10,51 @@ export enum STATUS {
 
 export class PaymentModel {
     constructor(
-        id: string,
-        client_id: string,
-        buyer_id: string,
-        amount: number,
-        type: TYPE,
-        status: STATUS
+        private id: string,
+        private client_id: string,
+        private buyer_id: string,
+        private amount: number,
+        private type: TYPE,
+        private status: STATUS
     ) { }
+}
+
+export interface PaymentDTO {
+    client_id: string,
+    buyer_id: string,
+    amount: number,
+    type: TYPE,
+    status: STATUS
+}
+
+// export interface inputGeneratePaymentDTO {
+//     client_id: string
+//     buyer_id: string
+//     amount: number
+//     type: TYPE
+//     status: STATUS
+//     card_holder?: string
+//     card_number?: string
+//     card_expiration_date?: string
+//     card_cvv?: number
+// }
+
+export interface paymentCard {
+    // client_id: string
+    buyer_id: string
+    // amount: number
+    // type: TYPE
+    // status: STATUS
+    card_holder: string
+    card_number: string
+    card_expiration_date: string
+    card_cvv: number
+}
+
+export interface paymentBoleto {
+    client_id: string
+    buyer_id: string
+    amount: number
+    type: TYPE
+    status: STATUS
 }

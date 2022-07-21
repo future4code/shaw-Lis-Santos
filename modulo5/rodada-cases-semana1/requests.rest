@@ -10,3 +10,32 @@ Content-Type: application/json
 ### 
 POST http://localhost:3003/client
 Content-Type: application/json
+
+### 
+POST http://localhost:3003/payment
+Content-Type: application/json
+
+{
+    "client_id": "25ab9191-57c4-4415-9a16-334791819c26",
+    "buyer_id": "8cba7dee-01cf-49c1-bd9c-e76a0fb2ad16",
+    "amount": 7700,
+    "type": "BOLETO"
+}
+
+###
+POST http://localhost:3003/payment
+Content-Type: application/json
+
+{
+    "client_id": "25ab9191-57c4-4415-9a16-334791819c26",
+    "buyer_id": "8cba7dee-01cf-49c1-bd9c-e76a0fb2ad16",
+    "amount": 7700,
+    "type": "CARTÃO DE CRÉDITO",
+    "card_holder": "Matheus",
+    "card_number": "123456789000",
+    "card_expiration_date": "12/2023",
+    "card_cvv": 123
+}
+
+### 
+GET http://localhost:3003/payment/1fd90431-9b36-4a2d-9684-1122dd04eb79

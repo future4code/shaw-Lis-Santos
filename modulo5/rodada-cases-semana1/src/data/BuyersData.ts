@@ -32,4 +32,14 @@ export class BuyersData extends BaseDataBase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
+    findById = async (id: string) => {
+        try {
+            const [result] = await BaseDataBase.connection(this.TABLE_NAME)
+                .select("*")
+                .where({ id })
+            return result
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
 }
