@@ -27,24 +27,8 @@ export interface PaymentDTO {
     status: STATUS
 }
 
-// export interface inputGeneratePaymentDTO {
-//     client_id: string
-//     buyer_id: string
-//     amount: number
-//     type: TYPE
-//     status: STATUS
-//     card_holder?: string
-//     card_number?: string
-//     card_expiration_date?: string
-//     card_cvv?: number
-// }
-
 export interface paymentCard {
-    // client_id: string
     buyer_id: string
-    // amount: number
-    // type: TYPE
-    // status: STATUS
     card_holder: string
     card_number: string
     card_expiration_date: string

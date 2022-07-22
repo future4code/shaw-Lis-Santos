@@ -1,5 +1,5 @@
 import { PaymentData } from "../data/PaymentData";
-import { PaymentDTO, PaymentModel } from "../model/PaymentModel";
+import { PaymentDTO, PaymentModel, TYPE } from "../model/PaymentModel";
 import { IdGenerator } from "../services/IdGenerator";
 import { STATUS } from "../model/PaymentModel";
 
@@ -15,8 +15,12 @@ export class PaymentBusiness {
             if (!client_id || !buyer_id || !amount || !type) {
                 throw new Error("Preencha corretamente os campos 'client_id', 'buyer_id', 'amount', 'type'")
             }
-            if (!status) {
+            if (type === TYPE.BOLETO) {
                 status = STATUS.A_PAGAR
+            }
+
+            if (type === TYPE.CARD) {
+                status = STATUS.PAGO
             }
             const id = this.idGenerator.generateId()
 
@@ -35,14 +39,18 @@ export class PaymentBusiness {
         }
     }
     getPayment = async (id: string) => {
-        if (!id) {
-            throw new Error("Insira um id de pagamento")
-        }
-        const paymentDatabase = await this.paymentData.getPaymentById(id)
+        try {
+            if (!id) {
+                throw new Error("Insira um id de pagamento")
+            }
+            const paymentDatabase = await this.paymentData.getPaymentById(id)
 
-        if (!paymentDatabase) {
-            throw new Error("Não existe pagamento com esse id")
+            if (!paymentDatabase) {
+                throw new Error("Não existe pagamento com esse id")
+            }
+            return paymentDatabase
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
         }
-        return paymentDatabase
     }
 }

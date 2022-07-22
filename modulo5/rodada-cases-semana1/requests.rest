@@ -32,10 +32,10 @@ Content-Type: application/json
     "amount": 7700,
     "type": "CARTÃO DE CRÉDITO",
     "card_holder": "Matheus",
-    "card_number": "123456789000",
+    "card_number": "1234567890001111",
     "card_expiration_date": "12/2023",
-    "card_cvv": 123
+    "card_cvv": 122
 }
 
 ### 
-GET http://localhost:3003/payment/1fd90431-9b36-4a2d-9684-1122dd04eb79
+GET http://localhost:3003/payment/03b4d7a9-9365-4425-b9b8-904190d80f98
