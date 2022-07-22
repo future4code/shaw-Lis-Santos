@@ -26,7 +26,7 @@ export class BuyerDatabaseMock {
     }
     public async findById(id: string): Promise<BuyersModel | undefined> {
         switch (id) {
-            case "id_mock1":
+            case "id_buyer":
                 return Buyer1
             case "id_mock2":
                 return Buyer2
@@ -35,3 +35,14 @@ export class BuyerDatabaseMock {
         }
     }
 }
+//     public findById = async (id: string) => {
+//         switch (id) {
+//             case "id_mock1":
+//                 return Buyer1
+//             case "id_mock2":
+//                 return Buyer2
+//             default:
+//                 return undefined
+//         }
+//     }
+// }

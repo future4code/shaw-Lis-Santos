@@ -6,7 +6,8 @@ export class PaymentDataMock {
         switch (id) {
             case "id_mock":
                 return payment
-            default: undefined
+            default: 
+            return undefined
         }
     }
 }

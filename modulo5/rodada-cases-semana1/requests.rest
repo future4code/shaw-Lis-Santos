@@ -33,9 +33,12 @@ Content-Type: application/json
     "type": "CARTÃO DE CRÉDITO",
     "card_holder": "Matheus",
     "card_number": "1234567890001111",
-    "card_expiration_date": "12/2023",
+    "card_expiration_date": "12/202s3",
     "card_cvv": 122
 }
 
 ### 
 GET http://localhost:3003/payment/03b4d7a9-9365-4425-b9b8-904190d80f98
+
+###
+GET http://localhost:3003/buyer/98ba5002-8934-4bc8-8577-52b0930ee3fe

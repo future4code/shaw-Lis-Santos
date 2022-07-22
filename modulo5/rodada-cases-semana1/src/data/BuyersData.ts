@@ -4,7 +4,7 @@ import { BuyersModel } from "../model/BuyersModel";
 export class BuyersData extends BaseDataBase {
     protected TABLE_NAME = 'buyers_wirecard'
 
-    insert = async (buyer: BuyersModel) => {
+    insert = async (buyer: BuyersModel): Promise<void> => {
         try {
             await BaseDataBase.connection(this.TABLE_NAME).insert(buyer)
         } catch (error: any) {

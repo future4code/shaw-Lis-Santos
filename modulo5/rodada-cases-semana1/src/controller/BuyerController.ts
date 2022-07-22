@@ -22,4 +22,9 @@ export class BuyerController {
             res.send(error.sqlMessage || error.message)
         }
     }
+    getBuyerById = async (req: Request, res: Response) => {
+        const { id } = req.params
+        const payment = await this.buyerBusiness.getBuyerById(id)
+        res.status(200).send(payment)
+    }
 }

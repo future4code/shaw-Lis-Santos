@@ -1,12 +1,13 @@
-import { IdGenerator } from "../services/IdGenerator"
 import { CardData } from "../data/CardData"
 import { CardModel, inputDTO } from "../model/CardModel"
 import { BuyersData } from "../data/BuyersData"
+import { validCvv } from "../../tests/mocks/validCvv"
+import { CustomError } from "../error/CustomError"
 
 export class CardBusiness {
     constructor(
         private cardData = new CardData(),
-        private buyerData = new BuyersData()
+        private buyerData = new BuyersData(),
     ) { }
     addCard = async (input: inputDTO) => {
         const { buyer_id, card_holder, card_number, card_expiration_date, card_cvv } = input
@@ -17,7 +18,13 @@ export class CardBusiness {
         }
         const validBuyer = await this.buyerData.findById(buyer_id)
         if (!validBuyer) {
-            throw new Error("O comprador não corresponde ao proprietário do cartão")
+            throw new CustomError(409, "O comprador não corresponde ao proprietário do cartão")
+        }
+        if (!card_expiration_date.includes("/") || card_expiration_date.length !== 7) {
+            throw new CustomError(400, "Formato de data inválida")
+        }
+        if (!validCvv.includes(card_cvv)) {
+            throw new Error("Pagamento não autorizado")
         }
         if (card_number.length !== 16) {
             throw new Error("O cartão deve possuir 16 dígitos")
