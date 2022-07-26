@@ -34,15 +34,5 @@ export class BuyerDatabaseMock {
                 return undefined
         }
     }
+   
 }
-//     public findById = async (id: string) => {
-//         switch (id) {
-//             case "id_mock1":
-//                 return Buyer1
-//             case "id_mock2":
-//                 return Buyer2
-//             default:
-//                 return undefined
-//         }
-//     }
-// }

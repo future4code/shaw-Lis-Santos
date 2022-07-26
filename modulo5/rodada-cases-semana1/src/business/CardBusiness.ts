@@ -21,7 +21,7 @@ export class CardBusiness {
             throw new CustomError(409, "O comprador não corresponde ao proprietário do cartão")
         }
         if (!card_expiration_date.includes("/") || card_expiration_date.length !== 7) {
-            throw new CustomError(400, "Formato de data inválida")
+            throw new CustomError(400, "Formato de data inválido")
         }
         if (!validCvv.includes(card_cvv)) {
             throw new Error("Pagamento não autorizado")

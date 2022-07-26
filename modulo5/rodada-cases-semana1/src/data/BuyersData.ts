@@ -32,7 +32,7 @@ export class BuyersData extends BaseDataBase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    findById = async (id: string) => {
+    findById = async (id: string): Promise<BuyersModel | undefined> => {
         try {
             const [result] = await BaseDataBase.connection(this.TABLE_NAME)
                 .select("*")

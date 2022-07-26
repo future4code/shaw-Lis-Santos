@@ -41,7 +41,8 @@ export class BuyerBusiness {
             CPF
         )
         await this.buyersData.insert(newBuyer)
-        return newBuyer
+        const message = "Comprador adicionado com sucesso!"
+        return message
     }
     getBuyerById = async (id: string): Promise<BuyersModel> => {
         try {

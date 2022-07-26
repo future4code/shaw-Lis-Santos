@@ -5,11 +5,12 @@ import { PaymentDataMock } from "./mocks/PaymentDataMock"
 import { payment } from "./mocks/PaymentMock"
 import { Buyer1, Buyer2 } from "./mocks/BuyerMock"
 import { BuyerDatabaseMock } from "./mocks/BuyerDataMock"
+import { BuyerDTO } from "../src/model/BuyersModel"
 
 
 const buyerBusinessMock = new BuyerBusiness(
-    new BuyerDatabaseMock as any,
-    new IdGeneratorMock as any
+    new IdGeneratorMock as any,
+    new BuyerDatabaseMock as any
 )
 
 const paymentBusinessMock = new PaymentBusiness(
@@ -27,7 +28,7 @@ describe("Buyer table tests", () => {
         }
     })
     test("Sucess test buyer", async () => {
-        // expect.assertions(1)
+        expect.assertions(1)
         try {
             const result = await buyerBusinessMock.getBuyerById("id_buyer")
             console.log(result)
@@ -35,6 +36,20 @@ describe("Buyer table tests", () => {
 
         } catch (error: any) {
             console.log(error.message)
+        }
+    })
+    test("Inserindo comprador", async () => {
+        expect.assertions(1)
+        try {
+            const user: BuyerDTO = {
+                name: "Lis",
+                email: "lis@gmail.com",
+                CPF: "12345678911"
+            }
+            const message = await buyerBusinessMock.insertBuyer(user)
+            expect(message).toBe("Comprador adicionado com sucesso!")
+        } catch (error: any) {
+            console.log(error)
         }
     })
 })

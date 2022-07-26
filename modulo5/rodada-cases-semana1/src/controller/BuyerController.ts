@@ -16,8 +16,8 @@ export class BuyerController {
             CPF
         }
         try {
-            await this.buyerBusiness.insertBuyer(input)
-            res.status(201).send({ message: "Comprador adicionado com sucesso!" })
+            const message = await this.buyerBusiness.insertBuyer(input)
+            res.status(201).send({message})
         } catch (error: any) {
             res.send(error.sqlMessage || error.message)
         }
