@@ -22,6 +22,6 @@ POST http://localhost:3003/product
 Content-Type: application/json
 
 {
-    "product_name": "VESTIDO LONGO CREPE MANGA COMPRIDA",
-    "tags": ["casual", "metal", "delicado", "descolado"]
+    "product_name": "VESTIDO MALHA COM FENDA",
+    "tags": ["balada", "metal", "estampas", "moderno"]
 }
