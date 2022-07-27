@@ -25,3 +25,19 @@ Content-Type: application/json
     "product_name": "VESTIDO MALHA COM FENDA",
     "tags": ["balada", "metal", "estampas", "moderno"]
 }
+
+###
+
+GET http://localhost:3003/product
+Content-Type: application/json
+
+{
+    "product_name": "VESTIDO"
+
+}
+###
+
+GET http://localhost:3003/product/3e54118d-30e1-4025-a1de-bfbe69322636
+
+###
+GET http://localhost:3003/elastano

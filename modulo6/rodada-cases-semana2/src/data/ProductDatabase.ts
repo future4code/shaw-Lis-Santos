@@ -10,6 +10,25 @@ export class ProductDatabase extends BaseDatabase {
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
-
+    }
+    getByName = async (product_name: string): Promise<Product> => {
+        try {
+            const result = await BaseDatabase.connection(this.TABLE_NAME)
+                .select("*")
+                .where("product_name", "like", `%${product_name}%`)
+            return result as unknown as Product
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+    getById = async (id: string): Promise<Product> => {
+        try {
+            const [result] = await BaseDatabase.connection(this.TABLE_NAME)
+                .select("*")
+                .where({id})
+            return result
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
     }
 }
