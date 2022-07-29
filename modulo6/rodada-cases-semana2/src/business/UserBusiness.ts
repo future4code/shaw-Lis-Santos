@@ -1,4 +1,4 @@
-import { UserDatabase } from "../data/UserDataBase"
+import { UserDatabase } from "../data/UserDatabase"
 import { LoginInputDTO, SignupInputDTO, User, USER_ROLE } from "../model/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
@@ -41,7 +41,6 @@ export class UserBusiness {
             if (registeredUser) {
                 throw new Error("E-mail já cadastrado")
             }
-            console.log(role)
             const id = this.idGenerator.generateId()
 
             const hashPassword = await this.hashManager.hash(password)
@@ -52,7 +51,6 @@ export class UserBusiness {
                 hashPassword,
                 role
             )
-            console.log(user)
             await this.userDatabase.insertUser(user)
             const token = this.authenticator.generateToken({ id, role })
             return token

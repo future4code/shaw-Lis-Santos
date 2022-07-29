@@ -2,10 +2,6 @@ export type ProductDTO = {
     product_name: string
 }
 
-export type TagsDTO = {
-    tags: string[]
-}
-
 export class Product {
     constructor(
         private id: string,

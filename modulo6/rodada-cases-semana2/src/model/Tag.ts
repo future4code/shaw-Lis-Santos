@@ -1,10 +1,15 @@
 export class Tag {
-    constructor (
-    id: string,
-    tag: string[], 
-    product_id: string
-    ) {}
+    constructor(
+        id: string,
+        tag: string[],
+        product_id: string
+    ) { }
 }
+
+export type TagsDTO = {
+    tags: string[]
+}
+
 
 export interface getByTag {
     product_id: string

@@ -33,7 +33,7 @@ export class UserController {
                 password
             }
             const token = await this.userBusiness.login(userLogin)
-            res.status(200).send(token)
+            res.status(200).send({message: "Usuário logado com sucesso!", token})
 
         } catch (error: any) {
             res.status(500).send(error.sqlMessage || error.message)

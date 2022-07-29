@@ -11,7 +11,7 @@ export class ProductDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    getByName = async (product_name: string): Promise<Product> => {
+    getProductByName = async (product_name: string): Promise<Product> => {
         try {
             const result = await BaseDatabase.connection(this.TABLE_NAME)
                 .select("*")
@@ -21,7 +21,7 @@ export class ProductDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    getById = async (id: string): Promise<Product> => {
+    getProductById = async (id: string): Promise<Product> => {
         try {
             const [result] = await BaseDatabase.connection(this.TABLE_NAME)
                 .select("*")

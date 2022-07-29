@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
-import { ProductDTO, TagsDTO } from '../model/Product'
+import { ProductDTO } from '../model/Product'
+import { TagsDTO } from '../model/Tag'
 import { ProductBusiness } from '../business/ProductBusiness'
 
 export class ProductController {
@@ -7,7 +8,7 @@ export class ProductController {
         private productBusiness: ProductBusiness
     ) { }
 
-    insertProduct = async (req: Request, res: Response) => {
+    insertProduct = async (req: Request, res: Response): Promise<void> => {
         try {
             const { product_name, tags } = req.body
             const product: ProductDTO = {

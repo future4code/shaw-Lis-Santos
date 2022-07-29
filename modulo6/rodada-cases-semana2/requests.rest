@@ -40,4 +40,4 @@ Content-Type: application/json
 GET http://localhost:3003/product/3e54118d-30e1-4025-a1de-bfbe69322636
 
 ###
-GET http://localhost:3003/elastano
+GET http://localhost:3003/algodão

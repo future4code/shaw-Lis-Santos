@@ -1,7 +1,8 @@
-import { ProductDatabase } from "../data/ProductDatabase";
-import { Product, ProductDTO, ProductTag, TagsDTO } from "../model/Product";
-import { IdGenerator } from "../services/IdGenerator";
-import { TagDatabase } from "../data/TagDatabase";
+import { ProductDatabase } from "../data/ProductDatabase"
+import { Product, ProductDTO, ProductTag } from "../model/Product"
+import { TagsDTO } from "../model/Tag"
+import { IdGenerator } from "../services/IdGenerator"
+import { TagDatabase } from "../data/TagDatabase"
 
 export class ProductBusiness {
     constructor(
@@ -9,7 +10,7 @@ export class ProductBusiness {
         private tagDatabase: TagDatabase,
         private idGenerator: IdGenerator
     ) { }
-    async insertProduct(product: ProductDTO, tag: TagsDTO) {
+    async insertProduct(product: ProductDTO, tag: TagsDTO): Promise<void> {
         const { product_name } = product
         try {
             const id = this.idGenerator.generateId()
@@ -26,9 +27,12 @@ export class ProductBusiness {
         } catch (error: any) {
         }
     }
-    getProductByName = async (product_name: string) => {
+    getProductByName = async (product_name: string): Promise<Product> => {
         try {
-            const productDb = await this.productDatabase.getByName(product_name)
+            if (!product_name) {
+                throw new Error("Insira um nome de produto para pesquisa")
+            }
+            const productDb = await this.productDatabase.getProductByName(product_name)
             if (!productDb) {
                 throw new Error("Não existe produto com esse nome")
             }
@@ -37,9 +41,9 @@ export class ProductBusiness {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    getProductById = async (id: string) => {
+    getProductById = async (id: string): Promise<Product> => {
         try {
-            const productDb = await this.productDatabase.getById(id)
+            const productDb = await this.productDatabase.getProductById(id)
             if (!id) {
                 throw new Error("Insira um produto com esse id")
             }

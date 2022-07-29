@@ -14,11 +14,14 @@ export class TagDatabase extends BaseDatabase {
         }
     }
     getProductByTag = async (tag: Tag) => {
-        const result: getByTag = await BaseDatabase.connection(this.TABLE_NAME)
-        .select("product_tag.product_id", "products_amaro.product_name", "product_tag.tag")
-        .where({tag})
-        .join(this.TABLE_NAME2, "product_tag.product_id", "products_amaro.id")
-        return result
+        try {
+            const result: getByTag[] = await BaseDatabase.connection(this.TABLE_NAME)
+                .select("product_tag.product_id", "products_amaro.product_name", "product_tag.tag")
+                .where({ tag })
+                .join(this.TABLE_NAME2, "product_tag.product_id", "products_amaro.id")
+            return result
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
     }
-
 }
