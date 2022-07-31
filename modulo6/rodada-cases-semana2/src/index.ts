@@ -7,6 +7,7 @@ import { TagController } from "./controller/TagController"
 import { UserController } from "./controller/UserController"
 import { ProductDatabase } from "./data/ProductDatabase"
 import { TagDatabase } from "./data/TagDatabase"
+import { Authenticator } from "./services/Authenticator"
 import { IdGenerator } from "./services/IdGenerator"
 
 const userController = new UserController(
@@ -17,14 +18,16 @@ const productController = new ProductController(
     new ProductBusiness(
         new ProductDatabase,
         new TagDatabase,
-        new IdGenerator
+        new IdGenerator,
+        new Authenticator
 
     )
 )
 
 const tagController = new TagController(
     new TagBusiness(
-        new TagDatabase
+        new TagDatabase,
+        new Authenticator
     )
 )
 

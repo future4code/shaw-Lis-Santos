@@ -5,7 +5,7 @@ export class AuthenticatorMock {
         return "TOKEN"
     }
 
-    public getData(token: string) {
+    public getTokenData(token: string) {
         const objeto = {
             id: "id_mock",
             role: USER_ROLE.ADMIN

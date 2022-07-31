@@ -7,8 +7,9 @@ export class TagController {
     ) { }
     getProductByTag = async (req: Request, res: Response) => {
         const { tag } = req.params
+        const token: string = req.headers.authorization as string
         try {
-            const tags = await this.tagBusiness.getProductByTag(tag)
+            const tags = await this.tagBusiness.getProductByTag(tag, token)
             res.status(500).send(tags)
         } catch (error: any) {
             res.status(500).send(error.sqlMessage || error.message)

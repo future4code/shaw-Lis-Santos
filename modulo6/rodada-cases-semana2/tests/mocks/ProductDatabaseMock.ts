@@ -3,7 +3,8 @@ import { Product1, Product2 } from "./ProductMock"
 
 export class ProductDatabaseMock {
 
-    public async getProductByName(product_name: string): Promise<Product | undefined> {
+    public async getProductByName(product_name: string, token: string): Promise<Product | undefined> {
+        console.log(product_name)
         switch (product_name) {
             case "Calça pantalona":
                 return Product1
@@ -13,7 +14,7 @@ export class ProductDatabaseMock {
                 return undefined
         }
     }
-    public async getProductById (id: string): Promise<Product | undefined> {
+    public async getProductById(id: string, token: string): Promise<Product | undefined> {
         switch (id) {
             case "id_product1":
                 return Product1

@@ -1,13 +1,18 @@
+@tokenNORMAL = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InNlcmdpb0BnbWFpbC5jb20iLCJyb2xlIjoiTk9STUFMIiwiaWF0IjoxNjU5MDYxNTk3LCJleHAiOjE2NTkxNDc5OTd9.jCOP-2ZDoGvRjWCR2QyoZhNw1OIUX4HmBv-Y4kKosms
+@tokenADMIN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcyYzUyNGEyLTRkNDMtNDQxOS1iODVkLTFhMTg3NDliMTEwNCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTA2MTc2MiwiZXhwIjoxNjU5MTQ4MTYyfQ.45DWJKu0JT13kXZpnuc7E-jP7-WT-cYNN3Xtf3fBg6o
+
+### SIGNUP
 POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "name": "sergio",
-    "email": "sergio@gmail.com",
-    "password": "123456"
+    "name": "Lídia",
+    "email": "lidia@gmail.com",
+    "password": "123456",
+    "role": "ADMIN"
 }
 
-### 
+### LOGIN
 POST http://localhost:3003/login
 Content-Type: application/json
 
@@ -16,28 +21,30 @@ Content-Type: application/json
     "password": "123456"
 }
 
-### 
-
+### ADICIONAR PRODUTO
 POST http://localhost:3003/product
 Content-Type: application/json
+authorization: {{tokenADMIN}}
 
 {
-    "product_name": "VESTIDO MALHA COM FENDA",
-    "tags": ["balada", "metal", "estampas", "moderno"]
+    "product_name": "VESTIDO CAMISETA FANCY",
+    "tags": ["casual", "liso"]
 }
 
-###
-
+### PEGAR PRODUTO PELO NOME
 GET http://localhost:3003/product
 Content-Type: application/json
+authorization: {{tokenADMIN}}
 
 {
     "product_name": "VESTIDO"
 
 }
-###
 
+### PEGAR PRODUTO PELO ID
 GET http://localhost:3003/product/3e54118d-30e1-4025-a1de-bfbe69322636
+authorization: {{tokenADMIN}}
 
-###
-GET http://localhost:3003/algodão
+### PEGAR PRODUTO PELA TAG
+GET http://localhost:3003/elastano
+authorization: {{tokenADMIN}}

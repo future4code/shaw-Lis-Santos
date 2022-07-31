@@ -66,7 +66,7 @@ export class UserBusiness {
             }
             const userDB = await this.userDatabase.getUserByEmail(email)
             if (!userDB) {
-                throw new Error("E-mail inválido")
+                throw new Error("E-mail não cadastrado")
             }
             const passwordIsCorrect: boolean = await this.hashManager.compare(password, userDB.getPassword())
             if (!passwordIsCorrect) {
