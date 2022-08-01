@@ -16,7 +16,8 @@ const competitionController = new CompetitionController(
 
 const resultController = new ResultController(
     new ResultBusiness(
-        new ResultDatabase
+        new ResultDatabase,
+        new CompetitionDatabase
     )
 )
 

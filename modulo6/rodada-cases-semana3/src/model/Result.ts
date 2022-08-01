@@ -10,7 +10,6 @@ export type ResultDTO = {
     atleta: string
     value: string
     unidade: UNIDADE
-    status?: STATUS
 }
 
 export class Result {
