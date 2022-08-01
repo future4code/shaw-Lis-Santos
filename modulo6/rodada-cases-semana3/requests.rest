@@ -1,0 +1,21 @@
+### CRIAR COMPETIÇÃO
+POST http://localhost:3003/competition
+Content-Type: application/json
+
+{
+    "name": "Lançamento de Dardo final ",
+    "status": "Finalizada"
+}
+
+### CADASTRAR RESULTADO 
+POST http://localhost:3003/result/15d53974-03c5-421a-b81d-9aa2275b2564
+Content-Type: application/json
+
+{
+    "atleta": "Laila Ferrer",
+    "value": "70.43",
+    "unidade": "m"
+}
+
+### FINALIZAR UMA COMPETIÇÃO
+PUT http://localhost:3003/competition/e70777fc-0a47-4847-ad70-fa0c41016950
