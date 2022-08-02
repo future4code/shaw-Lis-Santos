@@ -1,10 +1,13 @@
 import app from "./app"
+import { AthleteBusiness } from "./business/AthleteBusiness"
 import { CompetitionBusiness } from "./business/CompetitionBusiness"
-import { ResultBusiness } from "./business/ResultBusiness"
+import { PlayBusiness } from "./business/PlayBusiness"
+import { AthleteController } from "./controller/AthleteController"
 import { CompetitionController } from "./controller/CompetitionController"
-import { ResultController } from "./controller/ResultController"
+import { PlayController } from "./controller/PlayController"
+import { AthleteDatabase } from "./data/AthleteDatabase"
 import { CompetitionDatabase } from "./data/CompetitionDatabase"
-import { ResultDatabase } from "./data/ResultDatabase"
+import { PlayDataBase } from "./data/PlayBaseDatabase"
 import { IdGenerator } from "./services/IdGenerator"
 
 const competitionController = new CompetitionController(
@@ -14,13 +17,22 @@ const competitionController = new CompetitionController(
     )
 )
 
-const resultController = new ResultController(
-    new ResultBusiness(
-        new ResultDatabase,
-        new CompetitionDatabase
+const athleteController = new AthleteController(
+    new AthleteBusiness(
+        new AthleteDatabase,
+        new IdGenerator
     )
 )
 
+const playController = new PlayController(
+    new PlayBusiness(
+        new PlayDataBase,
+        new IdGenerator,
+        new CompetitionDatabase
+    )
+)
+app.get("/:id_competition", playController.getResultByIdCompetition)
 app.post("/competition", competitionController.createCompetition)
-app.post("/result/:competicao_id", resultController.registerResult)
+app.post("/athlete", athleteController.createAthlete)
+app.post("/play/:id_competition/:id_athlete", playController.createPlay)
 app.put("/competition/:id", competitionController.putCompetitionById)

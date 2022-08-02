@@ -3,19 +3,31 @@ POST http://localhost:3003/competition
 Content-Type: application/json
 
 {
-    "name": "Lançamento de Dardo final ",
-    "status": "Finalizada"
+    "name": "Lançamento de dardo",
+    "status": "Acontecendo agora"
 }
 
-### CADASTRAR RESULTADO 
-POST http://localhost:3003/result/15d53974-03c5-421a-b81d-9aa2275b2564
+
+### CRIAR ATLETA
+
+POST http://localhost:3003/athlete
 Content-Type: application/json
 
 {
-    "atleta": "Laila Ferrer",
-    "value": "70.43",
-    "unidade": "m"
+    "name": "Muri"
+}
+
+### CADASTRAR RESULTADO
+POST http://localhost:3003/play/a1ec2888-359b-4243-8f77-4d9449b276fa/5f01daca-05db-4b05-94db-f22d836e6146
+Content-Type: application/json
+
+{
+    "value": ["90", "76", "69"],
+    "unity": "m"
 }
 
 ### FINALIZAR UMA COMPETIÇÃO
-PUT http://localhost:3003/competition/e70777fc-0a47-4847-ad70-fa0c41016950
+PUT http://localhost:3003/competition/6720df27-ca09-4be2-8adb-948eebd92c30
+
+### BUSCAR RESULTADO PELO ID DA COMPETIÇÃO 
+GET http://localhost:3003/a1ec2888-359b-4243-8f77-4d9449b276fa

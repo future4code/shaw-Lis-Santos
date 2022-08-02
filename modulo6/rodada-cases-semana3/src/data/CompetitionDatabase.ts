@@ -22,7 +22,7 @@ export class CompetitionDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-   updateCompetition = async (id: string) => {
+    updateCompetition = async (id: string) => {
         try {
             await BaseDatabase.connection(this.TABLE_NAME)
                 .update({ status: "FINALIZADA" })
