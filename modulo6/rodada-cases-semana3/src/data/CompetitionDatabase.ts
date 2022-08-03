@@ -2,7 +2,7 @@ import { Competition } from "../model/Competition";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class CompetitionDatabase extends BaseDatabase {
-    protected TABLE_NAME = 'competicao'
+    protected TABLE_NAME = 'competition'
 
     insertCompetition = async (competition: Competition) => {
         try {

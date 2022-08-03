@@ -35,7 +35,9 @@ export class PlayBusiness {
                         nameValue,
                         unity
                     )
-                    console.log(play)
+                    if(value.length !== 3) {
+                        throw new Error("Devem ser passados três resultados no 'value'")
+                    }
                     await this.playDatabase.insertPlay(play)
                 }
             }
@@ -51,6 +53,9 @@ export class PlayBusiness {
                     value,
                     unity
                 )
+                if(value.toString().length !== 1) {
+                    throw new Error("Deve ser passado apenas um resultado no 'value'")
+                }
                 await this.playDatabase.insertPlay(play)
                 
             }

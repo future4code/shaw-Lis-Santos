@@ -27,7 +27,7 @@ export class CompetitionBusiness {
                 status = STATUS.NÃO_INICIALIZADA
             }
             if (status !== STATUS.FINALIZADA && status !== STATUS.ACONTECENDO_AGORA && status !== STATUS.NÃO_INICIALIZADA) {
-                throw new Error("O status passado é invalido. Preencha com os valores de FINALIZADA, ACONTECENDO AGORA OU NÃO INICIALIZADA")
+                throw new Error("O status passado é inválido. Preencha com os valores de FINALIZADA, ACONTECENDO AGORA OU NÃO INICIALIZADA")
             }
             if (name.toUpperCase() === "100m") {
                 name = COMPETITION._100M

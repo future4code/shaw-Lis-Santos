@@ -5,7 +5,7 @@ import { BaseDatabase } from "./BaseDatabase";
 export class PlayDataBase extends BaseDatabase {
     protected TABLE_NAME = 'plays'
     protected TABLE_NAME2 = 'athlete'
-    protected TABLE_NAME3 = 'competicao'
+    protected TABLE_NAME3 = 'competition'
 
     insertPlay = async (play: Plays) => {
         try {
@@ -22,7 +22,7 @@ export class PlayDataBase extends BaseDatabase {
             const [result]: getResultByIdCompetition[] = await BaseDatabase.connection(this.TABLE_NAME)
                 .select("*")
                 .where({ id_competition: id_competition })
-                .join(this.TABLE_NAME3, "plays.id_competition", "competicao.id")
+                .join(this.TABLE_NAME3, "plays.id_competition", "competition.id")
             console.log(result)
             if (result.name === COMPETITION.DARDO) {
                 const result: getResultByIdCompetition[] = await BaseDatabase.connection(this.TABLE_NAME)
