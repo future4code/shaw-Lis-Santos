@@ -3,11 +3,11 @@ import { CompetitionDatabaseMock } from "./mocks/CompetitionDatabaseMock"
 import { IdGeneratorMock } from "./mocks/IdGenerator"
 import { PlayDataBaseMock } from "./mocks/PlayDatabaseMock"
 import { play1, PlayFailure, PlaySuccessDTO } from "./mocks/PlayMock"
-import { competition2, CompetitionFailureDTO, CompetitionSuccessDTO } from "./mocks/CompetitionMock"
+import { competition1, competition2, CompetitionFailureDTO, CompetitionSuccessDTO } from "./mocks/CompetitionMock"
 import { CompetitionBusiness } from "../src/business/CompetitionBusiness"
 import { AthleteBusiness } from "../src/business/AthleteBusiness"
 import { AthleteDatabaseMock } from "./mocks/AthleteDatabaseMock"
-import { AthleteFailureDTO, AthleteSuccessDTO } from "./mocks/AthleteMock"
+import { athlete1, athlete2, AthleteFailureDTO, AthleteSuccessDTO } from "./mocks/AthleteMock"
 
 const athleteBusinessMock = new AthleteBusiness(
     new AthleteDatabaseMock as any,
@@ -112,6 +112,24 @@ describe("tests of competition, athlete and plays table", () => {
             await playBusinessMock.createPlay(PlayFailure)
         } catch (error: any) {
             expect(error.message).toBe("Essa unidade não é compatível com a competição")
+        }
+    })
+    test("getAllCompetitions, sucess", async () => {
+        expect.assertions(1)
+        try {
+            const result = await competitionBusinessMock.getAllCompetitions()
+            expect(result).toStrictEqual([competition1, competition2])
+        } catch (error: any) {
+            console.log(error)
+        }
+    })
+    test("getAllAthletes, sucess", async () => {
+        expect.assertions(1)
+        try {
+            const result = await athleteBusinessMock.getAllAthletes()
+            expect(result).toStrictEqual([athlete1, athlete2])
+        } catch (error: any) {
+            console.log(error)
         }
     })
 })

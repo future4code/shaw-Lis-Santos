@@ -23,7 +23,7 @@ export class CompetitionDatabaseMock {
                 return undefined
         }
     }
-    updateCompetition = async (id: string) => {
+    updateCompetition = async (id: string): Promise<string> => {
         switch (id) {
             case "id_mock":
                 return "Status modificado!"
@@ -38,5 +38,8 @@ export class CompetitionDatabaseMock {
             default:
                 return undefined
         }
+    }
+    getAllCompetitions = async (): Promise<Competition[]> => {
+        return [competition1, competition2]
     }
 }

@@ -1,4 +1,5 @@
 import { Athlete } from "../../src/model/Athlete"
+import { athlete1, athlete2 } from "./AthleteMock"
 
 export class AthleteDatabaseMock {
     insertAthlete = async (athlete: Athlete): Promise<string> => {
@@ -8,5 +9,8 @@ export class AthleteDatabaseMock {
             default:
                 throw new Error("Error")
         }
+    }
+    getAllAthletes = async (): Promise<Athlete[]> => {
+        return [athlete1, athlete2]
     }
 }

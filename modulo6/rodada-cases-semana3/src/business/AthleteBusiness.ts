@@ -25,9 +25,13 @@ export class AthleteBusiness {
             throw new Error(error.slqMessage || error.message)
         }
     }
-    getAllAthletes = async ():Promise<Athlete[]> => {
+    getAllAthletes = async (): Promise<Athlete[]> => {
         try {
-            return await this.athleteDataBase.getAllAthletes()
+            const result = await this.athleteDataBase.getAllAthletes()
+            if (result.length === 0) {
+                throw new Error("Ainda não tem atleta cadastrado!")
+            }
+            return result
         } catch (error: any) {
             throw new Error(error.slqMessage || error.message)
         }

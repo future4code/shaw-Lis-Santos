@@ -72,7 +72,12 @@ export class CompetitionBusiness {
     }
     getAllCompetitions = async (): Promise<Competition[]> => {
         try {
-            return await this.competitionDataBase.getAllCompetitions()
+            const result = await this.competitionDataBase.getAllCompetitions()
+            // console.log(result)
+            if(result.length === 0) {
+                throw new Error("Ainda não tem nenhuma competição cadastrada!")
+            }
+            return result
         } catch (error: any) {
             throw new Error(error.slqMessage || error.message)
         }
