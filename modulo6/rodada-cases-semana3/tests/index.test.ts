@@ -29,7 +29,6 @@ describe("tests of competition, athlete and plays table", () => {
         expect.assertions(1)
         try {
             const result = await competitionBusinessMock.createCompetition(CompetitionSuccessDTO)
-            console.log(result)
             expect(result).toBe("Competição criada com sucesso!")
         } catch (error: any) {
             console.log(error.message)
@@ -47,7 +46,6 @@ describe("tests of competition, athlete and plays table", () => {
         expect.assertions(1)
         try {
             const result = await athleteBusinessMock.createAthlete(AthleteSuccessDTO)
-            console.log(result)
             expect(result).toBe("Atleta adicionado com sucesso!")
         } catch (error: any) {
             console.log(error.message)
@@ -100,7 +98,6 @@ describe("tests of competition, athlete and plays table", () => {
         expect.assertions(1)
         try {
             const result = await playBusinessMock.createPlay(PlaySuccessDTO)
-            console.log(result)
             expect(result).toBe("Resultado cadastrado com sucesso!")
         } catch (error: any) {
             console.log(error)
