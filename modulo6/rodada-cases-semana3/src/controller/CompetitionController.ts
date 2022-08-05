@@ -30,4 +30,12 @@ export class CompetitionController {
             res.status(500).send(error.sqlMessage || error.message)
         }
     }
+    getAllCompetitions = async (req: Request, res: Response) => {
+        try {
+            const result = await this.competitionBusiness.getAllCompetitions()
+            res.status(200).send(result)
+        } catch (error: any) {
+            res.status(500).send(error.slqMessage || error.message)
+        }
+    }
 }

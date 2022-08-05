@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { AthleteBusiness } from "../business/AthleteBusiness";
-import { AthleteDTO } from "../model/Athlete";
+import { Athlete, AthleteDTO } from "../model/Athlete";
 
 export class AthleteController {
     constructor(
-       private athleteBusiness: AthleteBusiness
+        private athleteBusiness: AthleteBusiness
     ) { }
     createAthlete = async (req: Request, res: Response) => {
         try {
@@ -14,9 +14,18 @@ export class AthleteController {
                 name
             }
             await this.athleteBusiness.createAthlete(input)
-            res.status(201).send({message: "Atleta criado com sucesso!"})
+            res.status(201).send({ message: "Atleta criado com sucesso!" })
         } catch (error: any) {
             res.status(500).send(error.slqMessage || error.message)
         }
     }
+    getAllAthletes = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const result: Athlete[] = await this.athleteBusiness.getAllAthletes()
+            res.status(201).send(result)
+        } catch (error: any) {
+            res.status(500).send(error.slqMessage || error.message)
+        }
+    }
+
 }

@@ -31,6 +31,8 @@ const playController = new PlayController(
         new CompetitionDatabase
     )
 )
+app.get("/athletes", athleteController.getAllAthletes)
+app.get("/competitions", competitionController.getAllCompetitions)
 app.get("/:id_competition", playController.getResultByIdCompetition)
 app.post("/competition", competitionController.createCompetition)
 app.post("/athlete", athleteController.createAthlete)

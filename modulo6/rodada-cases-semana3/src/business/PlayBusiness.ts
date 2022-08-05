@@ -19,7 +19,7 @@ export class PlayBusiness {
             }
             const competition = await this.competitionDatabase.getCompetitionById(id_competition)
             if (competition.status === STATUS.FINALIZADA) {
-                throw new Error("Não é possível aceitar cadastros de uma competição já finalizada")
+                throw new Error("Não é possível aceitar cadastro de uma competição já finalizada")
             }
 
             if (competition.name === COMPETITION.DARDO) {
@@ -35,7 +35,7 @@ export class PlayBusiness {
                         nameValue,
                         unity
                     )
-                    if(value.length !== 3) {
+                    if (value.length !== 3) {
                         throw new Error("Devem ser passados três resultados no 'value'")
                     }
                     await this.playDatabase.insertPlay(play)
@@ -50,29 +50,29 @@ export class PlayBusiness {
                     id,
                     id_competition,
                     id_athlete,
-                    value,
+                    Number(value),
                     unity
                 )
-                if(value.toString().length !== 1) {
+                if (typeof value === 'object' && value.length > 1) {
                     throw new Error("Deve ser passado apenas um resultado no 'value'")
                 }
-                await this.playDatabase.insertPlay(play)
-                
+              const result =  await this.playDatabase.insertPlay(play)
+              return result
+
             }
         } catch (error: any) {
             throw new Error(error.slqMessage || error.message)
         }
     }
-    getResultByCompetition = async (id_competition: string) => {
+    getResultByIdCompetition = async (id_competition: string) => {
         try {
             if (!id_competition) {
                 throw new Error("Insira uma competição com esse id")
             }
-            const resultDb = await this.playDatabase.getResultByIdCompetition(id_competition)
+            const resultDb = await this.playDatabase.selectResultByIdCompetition(id_competition)
             if (!resultDb) {
                 throw new Error("Não existe competição com esse id")
             }
-            
             return resultDb
         } catch (error: any) {
             throw new Error(error.slqMessage || error.message)

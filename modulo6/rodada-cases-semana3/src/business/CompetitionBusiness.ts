@@ -35,7 +35,7 @@ export class CompetitionBusiness {
             if (name.toUpperCase() === "Lançamento de dardo") {
                 name = COMPETITION.DARDO
             }
-            
+
             if (name !== COMPETITION._100M && name !== COMPETITION.DARDO) {
                 throw new Error("O name passado é inválido. Preencha com os valores de '100m' ou 'Lançamento de dardo'")
 
@@ -46,7 +46,8 @@ export class CompetitionBusiness {
                 name,
                 status
             )
-            await this.competitionDataBase.insertCompetition(competition)
+            const result = await this.competitionDataBase.insertCompetition(competition)
+            return result
 
         } catch (error: any) {
             throw new Error(error.slqMessage || error.message)
@@ -61,7 +62,17 @@ export class CompetitionBusiness {
             if (!competitionDb) {
                 throw new Error("Não existe competição com esse id")
             }
-            await this.competitionDataBase.updateCompetition(id)
+            if (competitionDb.status === STATUS.FINALIZADA) {
+                throw new Error("Essa competição já se encontra finalizada")
+            }
+            return await this.competitionDataBase.updateCompetition(id)
+        } catch (error: any) {
+            throw new Error(error.slqMessage || error.message)
+        }
+    }
+    getAllCompetitions = async (): Promise<Competition[]> => {
+        try {
+            return await this.competitionDataBase.getAllCompetitions()
         } catch (error: any) {
             throw new Error(error.slqMessage || error.message)
         }

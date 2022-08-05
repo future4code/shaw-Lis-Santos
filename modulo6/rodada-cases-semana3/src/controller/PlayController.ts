@@ -26,7 +26,7 @@ export class PlayController {
     getResultByIdCompetition = async (req: Request, res: Response) => {
         const { id_competition } = req.params
         try {
-            const result = await this.playBusiness.getResultByCompetition(id_competition)
+            const result = await this.playBusiness.getResultByIdCompetition(id_competition)
             res.status(200).send(result)
         } catch (error: any) {
             res.status(500).send(error.sqlMessage || error.message)

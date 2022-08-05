@@ -19,7 +19,15 @@ export class AthleteBusiness {
                 id,
                 name
             )
-            await this.athleteDataBase.insertAthlete(athlete)
+            const result = await this.athleteDataBase.insertAthlete(athlete)
+            return result
+        } catch (error: any) {
+            throw new Error(error.slqMessage || error.message)
+        }
+    }
+    getAllAthletes = async ():Promise<Athlete[]> => {
+        try {
+            return await this.athleteDataBase.getAllAthletes()
         } catch (error: any) {
             throw new Error(error.slqMessage || error.message)
         }

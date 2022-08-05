@@ -8,6 +8,16 @@ export class AthleteDatabase extends BaseDatabase {
         try {
             await BaseDatabase.connection(this.TABLE_NAME)
                 .insert(athlete)
+            return "Atleta adicionado com sucesso!"
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+    getAllAthletes = async (): Promise<Athlete[]> => {
+        try {
+            const result: Athlete[] = await BaseDatabase.connection(this.TABLE_NAME)
+                .select("*")
+            return result
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }

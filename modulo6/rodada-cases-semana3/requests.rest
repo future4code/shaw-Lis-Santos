@@ -3,10 +3,9 @@ POST http://localhost:3003/competition
 Content-Type: application/json
 
 {
-    "name": "100m",
+    "name": "Lançamento de dardo",
     "status": "Acontecendo agora"
 }
-
 
 ### CRIAR ATLETA
 
@@ -14,20 +13,25 @@ POST http://localhost:3003/athlete
 Content-Type: application/json
 
 {
-    "name": "Pedro"
+    "name": "Alice"
 }
+### BUSCAR TODAS AS COMPETIÇÕES
+GET http://localhost:3003/competitions
+
+### BUSCAR TODOS OS ATLETAS
+GET http://localhost:3003/athletes
+
+### BUSCAR RANKING PELO ID DA COMPETIÇÃO 
+GET http://localhost:3003/4614ed32-795d-487e-9cce-95308bd14249
 
 ### CADASTRAR RESULTADO
-POST http://localhost:3003/play/ab2a2e7d-3e40-476c-8363-674dc7e2e5c5/5eabcb76-c93c-4f0b-92bd-c2aea2d08a11
+POST http://localhost:3003/play/4614ed32-795d-487e-9cce-95308bd14249/aeb4e458-90ba-43c3-9202-578ba85b0446
 Content-Type: application/json
 
 {
-    "value": 85,
-    "unity": "s"
+    "value": [101.3, 99.8, 102],
+    "unity": "m"
 }
 
 ### FINALIZAR UMA COMPETIÇÃO
-PUT http://localhost:3003/competition/74f195fb-a060-4f83-bd0f-f99d1a69eba2
-
-### BUSCAR RESULTADO PELO ID DA COMPETIÇÃO 
-GET http://localhost:3003/ab2a2e7d-3e40-476c-8363-674dc7e2e5c5
+PUT http://localhost:3003/competition/d09f660d-bc72-44c2-a0ac-051949ac6964

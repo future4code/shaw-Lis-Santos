@@ -8,6 +8,7 @@ export class CompetitionDatabase extends BaseDatabase {
         try {
             await BaseDatabase.connection(this.TABLE_NAME)
                 .insert(competition)
+            return "Competição criada com sucesso!"
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
@@ -27,6 +28,16 @@ export class CompetitionDatabase extends BaseDatabase {
             await BaseDatabase.connection(this.TABLE_NAME)
                 .update({ status: "FINALIZADA" })
                 .where({ id })
+            return "Status modificado!"
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+    getAllCompetitions = async (): Promise<Competition[]> => {
+        try {
+            const result: Competition[] = await BaseDatabase.connection(this.TABLE_NAME)
+            .select("*")
+            return result
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }

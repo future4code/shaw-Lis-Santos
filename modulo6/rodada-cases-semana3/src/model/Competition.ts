@@ -5,8 +5,8 @@ export enum STATUS {
 }
 
 export enum COMPETITION {
- _100M = "100m",
- DARDO = "Lançamento de dardo"
+    _100M = "100m",
+    DARDO = "Lançamento de dardo"
 }
 
 export type CompetitionDTO = {
@@ -20,4 +20,8 @@ export class Competition {
         private name: COMPETITION,
         private status: STATUS
     ) { }
+
+    public getId() {
+        return this.id
+    }
 }

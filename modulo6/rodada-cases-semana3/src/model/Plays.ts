@@ -11,6 +11,10 @@ export class Plays {
         private value: number | number[],
         private unity: string
     ) { }
+
+    getId() {
+        return this.id
+    }
 }
 
 export type PlaysDTO = {

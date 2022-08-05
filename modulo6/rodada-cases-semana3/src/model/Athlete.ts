@@ -3,6 +3,9 @@ export class Athlete {
         private id: string,
         private name: string
     ) { }
+    getId() {
+        return this.id
+    }
 }
 
 export type AthleteDTO = {

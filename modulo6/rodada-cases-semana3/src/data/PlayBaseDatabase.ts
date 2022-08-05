@@ -1,6 +1,6 @@
-import { COMPETITION } from "../model/Competition";
-import { getResultByIdCompetition, Plays } from "../model/Plays";
-import { BaseDatabase } from "./BaseDatabase";
+import { COMPETITION } from "../model/Competition"
+import { getResultByIdCompetition, Plays } from "../model/Plays"
+import { BaseDatabase } from "./BaseDatabase"
 
 export class PlayDataBase extends BaseDatabase {
     protected TABLE_NAME = 'plays'
@@ -11,33 +11,34 @@ export class PlayDataBase extends BaseDatabase {
         try {
             await BaseDatabase.connection(this.TABLE_NAME)
                 .insert(play)
+                return "Resultado cadastrado com sucesso!"
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
 
-    getResultByIdCompetition = async (id_competition: string) => {
-        console.log(id_competition)
+    selectResultByIdCompetition = async (id_competition: string) => {
         try {
             const [result]: getResultByIdCompetition[] = await BaseDatabase.connection(this.TABLE_NAME)
                 .select("*")
                 .where({ id_competition: id_competition })
                 .join(this.TABLE_NAME3, "plays.id_competition", "competition.id")
-            console.log(result)
             if (result.name === COMPETITION.DARDO) {
                 const result: getResultByIdCompetition[] = await BaseDatabase.connection(this.TABLE_NAME)
-                    .select("plays.id", "athlete.name", "plays.value", "plays.unity")
+                    .select("name", "unity") 
+                    .max('value as value' ) 
                     .where({ id_competition: id_competition })
                     .join(this.TABLE_NAME2, "plays.id_athlete", "athlete.id")
                     .orderBy("value", "desc")
-                console.log(result)
+                    .orderBy("name", "asc")
+                    .groupBy("name", "unity")
                 return result
             } else if (result.name === COMPETITION._100M) {
                 const result: getResultByIdCompetition[] = await BaseDatabase.connection(this.TABLE_NAME)
-                    .select("plays.id", "athlete.name", "plays.value", "plays.unity")
+                    .select("athlete.name", "plays.value", "plays.unity")
                     .where({ id_competition: id_competition })
                     .join(this.TABLE_NAME2, "plays.id_athlete", "athlete.id")
-                    .orderBy("plays.value")
+                    .orderBy("value")
                 return result
             }
         } catch (error: any) {
