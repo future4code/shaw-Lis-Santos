@@ -76,8 +76,7 @@ describe("tests of competition, athlete and plays table", () => {
             expect(error.message).toBe("Insira uma competição com esse id")
         }
     })
-
-    test("Sucess test updateCompetition", async () => {
+    test("Sucess putCompetitionById", async () => {
         expect.assertions(1)
         try {
             const result = await competitionBusinessMock.putCompetitionById("id_mock")
@@ -129,4 +128,5 @@ describe("tests of competition, athlete and plays table", () => {
             console.log(error)
         }
     })
+
 })

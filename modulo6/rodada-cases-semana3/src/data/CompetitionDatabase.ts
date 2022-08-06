@@ -8,7 +8,6 @@ export class CompetitionDatabase extends BaseDatabase {
         try {
             await BaseDatabase.connection(this.TABLE_NAME)
                 .insert(competition)
-            return "Competição criada com sucesso!"
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }

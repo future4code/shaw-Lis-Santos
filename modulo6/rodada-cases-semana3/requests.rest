@@ -1,37 +1,38 @@
 ### CRIAR COMPETIÇÃO
-POST http://localhost:3003/competition
+POST https://desafio-estante-virtual.herokuapp.com/competition
 Content-Type: application/json
 
 {
-    "name": "Lançamento de dardo",
-    "status": "Acontecendo agora"
+    "name": "100m",
+    "status": "Não inicializada"
 }
 
 ### CRIAR ATLETA
 
-POST http://localhost:3003/athlete
+POST https://desafio-estante-virtual.herokuapp.com/athlete
 Content-Type: application/json
 
 {
-    "name": "Alice"
+    "name": "Amanda"
 }
 ### BUSCAR TODAS AS COMPETIÇÕES
-GET http://localhost:3003/competitions
+GET https://desafio-estante-virtual.herokuapp.com/competitions
 
 ### BUSCAR TODOS OS ATLETAS
-GET http://localhost:3003/athletes
-
-### BUSCAR RANKING PELO ID DA COMPETIÇÃO 
-GET http://localhost:3003/4614ed32-795d-487e-9cce-95308bd14249
+GET https://desafio-estante-virtual.herokuapp.com/athletes
 
 ### CADASTRAR RESULTADO
-POST http://localhost:3003/play/4614ed32-795d-487e-9cce-95308bd14249/aeb4e458-90ba-43c3-9202-578ba85b0446
+POST https://desafio-estante-virtual.herokuapp.com/play/db79bf54-209a-45b2-a9c4-395346342d68/e671efb3-1d81-49bb-8133-4e41425d23f5
 Content-Type: application/json
 
 {
-    "value": [101.3, 99.8, 102],
+    "value": [86.9, 87.4, 88],
     "unity": "m"
 }
 
+### BUSCAR RANKING PELO ID DA COMPETIÇÃO 
+GET https://desafio-estante-virtual.herokuapp.com/db79bf54-209a-45b2-a9c4-395346342d68
+
+
 ### FINALIZAR UMA COMPETIÇÃO
-PUT http://localhost:3003/competition/d09f660d-bc72-44c2-a0ac-051949ac6964
+PUT https://desafio-estante-virtual.herokuapp.com/competition/a6b77efd-c1cd-4c5c-8f50-b3a4eca917a7

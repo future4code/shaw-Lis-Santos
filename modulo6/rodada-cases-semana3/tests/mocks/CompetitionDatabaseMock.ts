@@ -1,4 +1,4 @@
-import { Competition } from "../../src/model/Competition"
+import { COMPETITION, Competition } from "../../src/model/Competition"
 import { PlaysDTO } from "../../src/model/Plays"
 import { competition1, competition2 } from "./CompetitionMock"
 

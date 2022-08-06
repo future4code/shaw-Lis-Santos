@@ -16,7 +16,7 @@ export class CompetitionController {
                 status
             }
             await this.competitionBusiness.createCompetition(input)
-            res.status(201).send({ message: "Competição criada com sucesso!" })
+            res.status(201).send({ message: "Competição adicionada com sucesso!" })
         } catch (error: any) {
             res.status(500).send(error.slqMessage || error.message)
         }

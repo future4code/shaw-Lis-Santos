@@ -35,7 +35,7 @@ export class PlayDataBase extends BaseDatabase {
                 return result
             } else if (result.name === COMPETITION._100M) {
                 const result: getResultByIdCompetition[] = await BaseDatabase.connection(this.TABLE_NAME)
-                    .select("athlete.name", "plays.value", "plays.unity")
+                    .select("athlete.name", "plaslays.value", "plays.unity")
                     .where({ id_competition: id_competition })
                     .join(this.TABLE_NAME2, "plays.id_athlete", "athlete.id")
                     .orderBy("value")
