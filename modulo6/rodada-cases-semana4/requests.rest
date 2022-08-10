@@ -14,4 +14,4 @@ GET http://localhost:3003/pokemon/pokedex/386
 GET http://localhost:3003/pokemon/type1/grass
 
 ### PEGAR POKEMON PELO SEGUNDO TIPO
-GET http://localhost:3003/pokemon/type2/grass
+GET http://localhost:3003/pokemon/type2/poison

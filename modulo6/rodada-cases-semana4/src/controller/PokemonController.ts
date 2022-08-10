@@ -7,26 +7,27 @@ export class PokemonController {
     ) { }
     getAllPokemon = async (req: Request, res: Response) => {
         try {
-            const result = await this.pokemonBusiness.getAllPokemon()
+            let page = Number(req.query.page)
+            const result = await this.pokemonBusiness.getAllPokemon(page)
             res.status(200).send(result)
         } catch (error: any) {
-            throw new Error(error.sqlMessage || error.message)
+            res.status(500).send({ message: error.message })
         }
     }
     getPokemonByName = async (req: Request, res: Response) => {
         try {
             const { name } = req.params
-            const pokemonName = await this.pokemonBusiness.getPokemonByName(name)
-            res.status(200).send(pokemonName)
+            const pokemon = await this.pokemonBusiness.getPokemonByName(name)
+            res.status(200).send(pokemon)
         } catch (error: any) {
-            throw new Error(error.sqlMessage || error.message)
+            res.status(500).send({ message: error.message })
         }
     }
     getPokemonByGeneration = async (req: Request, res: Response) => {
         try {
             const generation = Number(req.params.generation)
-            const pokemonGeneration = await this.pokemonBusiness.getPokemonByGeneration(generation)
-            res.status(200).send(pokemonGeneration)
+            const pokemon = await this.pokemonBusiness.getPokemonByGeneration(generation)
+            res.status(200).send(pokemon)
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
@@ -34,8 +35,8 @@ export class PokemonController {
     getPokemonByPokedexNumber = async (req: Request, res: Response) => {
         try {
             const pokedex_number = Number(req.params.pokedex_number)
-            const pokedexNumber = await this.pokemonBusiness.getPokemonByPokedexNumber(pokedex_number)
-            res.status(200).send(pokedexNumber)
+            const pokemon = await this.pokemonBusiness.getPokemonByPokedexNumber(pokedex_number)
+            res.status(200).send(pokemon)
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
@@ -43,8 +44,8 @@ export class PokemonController {
     getPokemonByType1 = async (req: Request, res: Response) => {
         try {
             const { type1 } = req.params
-            const pokemonType1 = await this.pokemonBusiness.getPokemonByType1(type1)
-            res.status(200).send(pokemonType1)
+            const pokemon = await this.pokemonBusiness.getPokemonByType1(type1)
+            res.status(200).send(pokemon)
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
@@ -52,8 +53,8 @@ export class PokemonController {
     getPokemonByType2 = async (req: Request, res: Response) => {
         try {
             const { type2 } = req.params
-            const pokemonType2 = await this.pokemonBusiness.getPokemonByType2(type2)
-            res.status(200).send(pokemonType2)
+            const pokemon = await this.pokemonBusiness.getPokemonByType2(type2)
+            res.status(200).send(pokemon)
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }

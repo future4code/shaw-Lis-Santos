@@ -5,51 +5,61 @@ export class PokemonBusiness {
     constructor(
         private pokemonDatabase: PokemonDatabase
     ) { }
-    getAllPokemon = async () => {
+    getAllPokemon = async (page: number): Promise<Pokemon[] | undefined> => {
         try {
-            const result = await this.pokemonDatabase.getAllPokemon()
-            return result
+            const size = 10
+            let offset = (page - 1) * size
+
+            if (page < 1) {
+                throw new Error("Insira um valor maior do que 1")
+            } else if (page) {
+                const result = await this.pokemonDatabase.getAllPokemon(size, offset)
+                return result
+            } else if (!page) {
+                const result = await this.pokemonDatabase.getAllPokemon()
+                return result
+            }
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    getPokemonByName = async (name: string) => {
+    getPokemonByName = async (name: string): Promise<Pokemon> => {
         try {
-            const pokemonNameDatabase = await this.pokemonDatabase.getPokemonByName(name)
-            return pokemonNameDatabase
+            const pokemonDb = await this.pokemonDatabase.getPokemonByName(name)
+            return pokemonDb
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    getPokemonByGeneration = async (generation: number) => {
+    getPokemonByGeneration = async (generation: number): Promise<Pokemon[]> => {
         try {
-            const pokemonGeneration = await this.pokemonDatabase.getPokemonByGeneration(generation)
-            return pokemonGeneration
+            const pokemonDb = await this.pokemonDatabase.getPokemonByGeneration(generation)
+            return pokemonDb
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
 
     }
-    getPokemonByPokedexNumber = async (pokedex_number: number) => {
+    getPokemonByPokedexNumber = async (pokedex_number: number): Promise<Pokemon[]> => {
         try {
-            const pokemonPokedexNumber = await this.pokemonDatabase.getPokemonByPokedexNumber(pokedex_number)
-            return pokemonPokedexNumber
+            const pokemonDb = await this.pokemonDatabase.getPokemonByPokedexNumber(pokedex_number)
+            return pokemonDb
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    getPokemonByType1 = async (type1: string) => {
+    getPokemonByType1 = async (type1: string): Promise<Pokemon[]> => {
         try {
-            const pokemonType1 = await this.pokemonDatabase.getPokemonByType1(type1)
-            return pokemonType1
+            const pokemonDb = await this.pokemonDatabase.getPokemonByType1(type1)
+            return pokemonDb
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
-    getPokemonByType2 = async (type2: string) => {
+    getPokemonByType2 = async (type2: string): Promise<Pokemon[]> => {
         try {
-            const pokemonType2 = await this.pokemonDatabase.getPokemonByType2(type2)
-            return pokemonType2
+            const pokemonDb = await this.pokemonDatabase.getPokemonByType2(type2)
+            return pokemonDb
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }

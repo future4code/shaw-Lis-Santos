@@ -4,10 +4,12 @@ import { BaseDatabase } from "./BaseDatabase"
 export class PokemonDatabase extends BaseDatabase {
     protected TABLE_NAME = 'mytable'
 
-    getAllPokemon = async (): Promise<Pokemon[]> => {
+    getAllPokemon = async (size?: any, offset?: any): Promise<Pokemon[]> => {
         try {
             const result = await BaseDatabase.connection(this.TABLE_NAME)
                 .select("*")
+                .limit(size)
+                .offset(offset)
             return result
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
@@ -47,7 +49,7 @@ export class PokemonDatabase extends BaseDatabase {
         try {
             const result: Pokemon[] = await BaseDatabase.connection(this.TABLE_NAME)
                 .select("*")
-                .where({type1})
+                .where({ type1 })
             return result
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
@@ -57,7 +59,7 @@ export class PokemonDatabase extends BaseDatabase {
         try {
             const result: Pokemon[] = await BaseDatabase.connection(this.TABLE_NAME)
                 .select("*")
-                .where({type2})
+                .where({ type2 })
             return result
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)

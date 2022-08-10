@@ -28,5 +28,4 @@ export interface Pokemon {
     future_evolve: number,
     full_cp_at_forty: number,
     full_cp_at_thirty_nine: number
-
 }
