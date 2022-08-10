@@ -6,3 +6,12 @@ GET http://localhost:3003/pokemon/name/Bulbasaur
 
 ### PEGAR POKEMON POR GERAÇÃO
 GET http://localhost:3003/pokemon/generation/1
+
+### PEGAR POKEMON PELO NÚMERO DA POKEDEX
+GET http://localhost:3003/pokemon/pokedex/386
+
+### PEGAR POKEMON PELO PRIMEIRO TIPO
+GET http://localhost:3003/pokemon/type1/grass
+
+### PEGAR POKEMON PELO SEGUNDO TIPO
+GET http://localhost:3003/pokemon/type2/grass
