@@ -1,0 +1,8 @@
+### PEGAR TODOS OS POKEMON
+GET http://localhost:3003/pokemon
+
+### PEGAR POKEMON POR NOME
+GET http://localhost:3003/pokemon/name/Bulbasaur
+
+### PEGAR POKEMON POR GERAÇÃO
+GET http://localhost:3003/pokemon/generation/1
