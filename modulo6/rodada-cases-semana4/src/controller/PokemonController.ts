@@ -29,7 +29,7 @@ export class PokemonController {
             const pokemon = await this.pokemonBusiness.getPokemonByGeneration(generation)
             res.status(200).send(pokemon)
         } catch (error: any) {
-            throw new Error(error.sqlMessage || error.message)
+            res.status(500).send({ message: error.message })
         }
     }
     getPokemonByPokedexNumber = async (req: Request, res: Response) => {
@@ -38,16 +38,17 @@ export class PokemonController {
             const pokemon = await this.pokemonBusiness.getPokemonByPokedexNumber(pokedex_number)
             res.status(200).send(pokemon)
         } catch (error: any) {
-            throw new Error(error.sqlMessage || error.message)
+            res.status(500).send({ message: error.message })
         }
     }
     getPokemonByType1 = async (req: Request, res: Response) => {
         try {
             const { type1 } = req.params
+
             const pokemon = await this.pokemonBusiness.getPokemonByType1(type1)
             res.status(200).send(pokemon)
         } catch (error: any) {
-            throw new Error(error.sqlMessage || error.message)
+            res.status(500).send({ message: error.message })
         }
     }
     getPokemonByType2 = async (req: Request, res: Response) => {
@@ -56,7 +57,7 @@ export class PokemonController {
             const pokemon = await this.pokemonBusiness.getPokemonByType2(type2)
             res.status(200).send(pokemon)
         } catch (error: any) {
-            throw new Error(error.sqlMessage || error.message)
+            res.status(500).send({ message: error.message })
         }
     }
 }
