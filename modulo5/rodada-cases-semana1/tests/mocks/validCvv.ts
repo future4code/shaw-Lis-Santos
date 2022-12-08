@@ -1,1 +1,0 @@
-export const validCvv: number[] = [123, 456, 789, 987, 654, 321]
