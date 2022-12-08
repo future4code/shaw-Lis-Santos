@@ -1,0 +1,17 @@
+### PEGAR TODOS OS POKEMON
+GET http://localhost:3003/pokemon
+
+### PEGAR POKEMON POR NOME
+GET http://localhost:3003/pokemon/name/:name
+
+### PEGAR POKEMON POR GERAÇÃO
+GET http://localhost:3003/pokemon/generation/0
+
+### PEGAR POKEMON PELO NÚMERO DA POKEDEX
+GET http://localhost:3003/pokemon/pokedex/0
+
+### PEGAR POKEMON PELO PRIMEIRO TIPO
+GET http://localhost:3003/pokemon/type1/:type1
+
+### PEGAR POKEMON PELO SEGUNDO TIPO
+GET http://localhost:3003/pokemon/type2/:type2
